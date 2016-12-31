@@ -8,11 +8,23 @@ namespace lin_eindopdracht
 {
     public class Matrix3D
     {
-        private List<List<double>> matrix;
+        public List<List<double>> matrix { get; private set; }
 
         public Matrix3D(List<List<double>> matrix)
         {
             this.matrix = matrix;
+        }
+
+        public void schaal(double x, double y, double z)
+        {
+            //maak schaal matrix aan
+            List<List<double>> S_matrix = new List<List<double>>();
+            S_matrix.Add(new List<double> { x, 0, 0 });
+            S_matrix.Add(new List<double> { 0, y, 0 });
+            S_matrix.Add(new List<double> { 0, 0, z });
+
+            //vermenigvuldig de matrix
+            matrix = Matrix3D.vermenigvuldig(S_matrix, matrix);
         }
 
         public void rotated(double graden)
@@ -37,40 +49,41 @@ namespace lin_eindopdracht
             return (Math.PI / 180) * angle;
         }
 
-        public void transleer(float x, float y)
+        public void transleer(float x, float y,float z)
         {
-            //schaal functie voor 2d matrix
-            ////maak schaal matrix aan
-            //List<List<double>> T_matrix = new List<List<double>>();
-            //List<List<double>> M_matrix = matrix;
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    T_matrix.Add(new List<double>(3));
-            //}
-            //for (int i = 0; i < T_matrix.Count; i++)
-            //{
-            //    for (int j = 0; j < 3; j++)
-            //    {
-            //        T_matrix[i].Add(0);
-            //    }
-            //}
+            //maak schaal matrix aan
+            List<List<double>> T_matrix = new List<List<double>>();
+            List<List<double>> M_matrix = matrix;
+            for (int i = 0; i < 4; i++)
+            {
+                T_matrix.Add(new List<double>(4));
+            }
+            for (int i = 0; i < T_matrix.Count; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    T_matrix[i].Add(0);
+                }
+            }
 
-            ////zet 1s in de matrixs
-            //T_matrix[0][0] = 1;
-            //T_matrix[1][1] = 1;
-            //T_matrix[2][2] = 1;
-            ////zet verplaatsing x en y
-            //T_matrix[0][2] = x;
-            //T_matrix[1][2] = y;
+            //zet 1s in de matrixs
+            T_matrix[0][0] = 1;
+            T_matrix[1][1] = 1;
+            T_matrix[2][2] = 1;
+            T_matrix[3][3] = 1;
+            //zet verplaatsing x en y
+            T_matrix[0][3] = x;
+            T_matrix[1][3] = y;
+            T_matrix[2][3] = z;
 
-            //List<double> rekenlist = new List<double>();
-            //for (int i = 0; i < matrix[0].Count; i++)
-            //{
-            //    rekenlist.Add(1);
-            //}
-            //M_matrix.Add(rekenlist);
-            //matrix = Matrix3D.vermenigvuldig(T_matrix, M_matrix);
-            //matrix.RemoveAt(matrix.Count - 1);
+            List<double> rekenlist = new List<double>();
+            for (int i = 0; i < matrix[0].Count; i++)
+            {
+                rekenlist.Add(1);
+            }
+            M_matrix.Add(rekenlist);
+            matrix = Matrix3D.vermenigvuldig(T_matrix, M_matrix);
+            matrix.RemoveAt(matrix.Count - 1);
         }
 
         public static List<List<double>> vermenigvuldig(List<List<double>> matrix1, List<List<double>> matrix2)
