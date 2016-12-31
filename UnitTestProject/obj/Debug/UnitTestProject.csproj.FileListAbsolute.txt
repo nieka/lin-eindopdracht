@@ -1,0 +1,7 @@
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\bin\Debug\lin-eindopdracht.exe
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\bin\Debug\lin-eindopdracht.pdb
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\UnitTestProject\obj\Debug\UnitTestProject.pdb
