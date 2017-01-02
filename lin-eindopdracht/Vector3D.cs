@@ -12,6 +12,7 @@ namespace lin_eindopdracht
         public float y { get; set; }
 
         public float z { get; set; }
+       
 
         public Vector3D(float x, float y, float z)
         {
@@ -33,6 +34,14 @@ namespace lin_eindopdracht
             float y = vector2.y + vector2.y;
             float z = vector1.z + vector2.z;
             return new Vector3D(x, y,z);
+        }
+
+        public static Vector3D subtract(Vector3D vector1, Vector3D vector2)
+        {
+            float x = vector1.x - vector2.x;
+            float y = vector2.y - vector2.y;
+            float z = vector1.z - vector2.z;
+            return new Vector3D(x, y, z);
         }
 
         public void normalize()

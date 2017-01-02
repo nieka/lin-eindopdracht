@@ -8,7 +8,7 @@ namespace lin_eindopdracht
 {
     public class Matrix3D
     {
-        public List<List<double>> matrix { get; private set; }
+        public List<List<double>> matrix { get; set; }
 
         public Matrix3D(List<List<double>> matrix)
         {
@@ -59,7 +59,7 @@ namespace lin_eindopdracht
             matrix = Matrix3D.vermenigvuldig(R_matrix, matrix);
         }
 
-        public double ConvertToRadians(double angle)
+        public static double ConvertToRadians(double angle)
         {
             return (Math.PI / 180) * angle;
         }
