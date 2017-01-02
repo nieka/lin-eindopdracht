@@ -35,6 +35,13 @@ namespace lin_eindopdracht
             return new Vector3D(x, y,z);
         }
 
+        public void normalize()
+        {
+            float lengte = (float) Math.Sqrt(x * x + y * y);
+            x = x / lengte;
+            y = y / lengte;
+        }
+
         public static double inProduct(Vector3D vectorA, Vector3D vectorB)
         {
             return vectorA.x * vectorB.x + vectorA.y * vectorB.y + vectorA.z * vectorB.z;
