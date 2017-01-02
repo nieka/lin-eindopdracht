@@ -27,16 +27,22 @@ namespace lin_eindopdracht
             this.canvas = canvas;
 
             List<List<double>> voertuigMatrix = new List<List<double>>{
-                new List<double> {0,10,0,10,0,10,0,10}, //x
-                new List<double> {0,0,10,10,0,0,10,10}, //y
-                new List<double> {0,0,0,0,10,10,10,10}  //z
+                new List<double> {1,10,1,10,1,10,1,10}, //x
+                new List<double> {1,1,10,10,1,1,10,10}, //y
+                new List<double> {1,1,1,1,10,10,10,10}  //z
             };
+
+            //List<List<double>> voertuigMatrix = new List<List<double>>{
+            //    new List<double> {1,10}, //x
+            //    new List<double> {1,10}, //y
+            //    new List<double> {1,10}  //z
+            //};
+
             voertuig = new Matrix3D(voertuigMatrix);
 
             eye = new Vector3D(20, 20, 20);
             lookAt = new Vector3D(5, 5, 5);
             up = new Vector3D(0, 1, 0);
-
 
             draw();
         }
@@ -50,7 +56,8 @@ namespace lin_eindopdracht
             Matrix3D temp = new Matrix3D(null);
 
             //drawig voertuig
-            voertuig.matrix.Add(new List<double> { 0,0,0,0,0,0,0,0});
+             voertuig.matrix.Add(new List<double> { 1,1,1,1,1,1,1,1});
+          //voertuig.matrix.Add(new List<double> { 1,1});
             voertuig.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix),voertuig.matrix);
             naberekening(voertuig);
 

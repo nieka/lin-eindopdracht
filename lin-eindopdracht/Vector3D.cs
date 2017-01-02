@@ -21,21 +21,6 @@ namespace lin_eindopdracht
             this.z = z;
         }
 
-        public void schaal(int factor)
-        {
-            x = x * factor;
-            y = y * factor;
-            z = z * factor;
-        }
-
-        public static Vector3D multiply(Vector3D vector1, Vector3D vector2)
-        {
-            float x = vector1.x + vector2.x;
-            float y = vector2.y + vector2.y;
-            float z = vector1.z + vector2.z;
-            return new Vector3D(x, y,z);
-        }
-
         public static Vector3D subtract(Vector3D vector1, Vector3D vector2)
         {
             float x = vector1.x - vector2.x;
@@ -46,9 +31,10 @@ namespace lin_eindopdracht
 
         public void normalize()
         {
-            float lengte = (float) Math.Sqrt(x * x + y * y);
+            float lengte = (float) Math.Sqrt(x * x + y * y + z * z);
             x = x / lengte;
             y = y / lengte;
+            z = z / lengte;
         }
 
         public static double inProduct(Vector3D vectorA, Vector3D vectorB)

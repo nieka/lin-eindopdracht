@@ -60,6 +60,7 @@
     <Compile Include="RotatieTest.cs" />
     <Compile Include="InporductTests.cs" />
     <Compile Include="UitproductTest.cs" />
+    <Compile Include="NormalizeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lin-eindopdracht\lin-eindopdracht.csproj">
