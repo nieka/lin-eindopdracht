@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lin_eindopdracht;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,26 @@ namespace UnitTestProject
                         return false;
                     }
                 }
+            }
+
+            return true;
+        }
+
+        public static bool VectorsAreEqeul(Vector3D vectora, Vector3D vectorb)
+        {
+            if(vectora.x != vectorb.x)
+            {
+                return false;
+            }
+
+            if(vectora.y != vectorb.y)
+            {
+                return false;
+            }
+
+            if(vectora.z != vectorb.z)
+            {
+                return false;
             }
 
             return true;

@@ -34,5 +34,19 @@ namespace lin_eindopdracht
             float z = vector1.z + vector2.z;
             return new Vector3D(x, y,z);
         }
+
+        public static double inProduct(Vector3D vectorA, Vector3D vectorB)
+        {
+            return vectorA.x * vectorB.x + vectorA.y * vectorB.y + vectorA.z * vectorB.z;
+        }
+
+        public static Vector3D uitProduct(Vector3D vectorA, Vector3D vectorB)
+        {
+            return new Vector3D(
+                    vectorA.y * vectorB.z - vectorB.y * vectorA.z,
+                    vectorB.x * vectorA.z - vectorA.x * vectorB.z,
+                    vectorA.x * vectorB.y - vectorB.x * vectorA.y
+                );
+        } 
     }
 }

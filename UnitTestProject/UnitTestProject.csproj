@@ -58,6 +58,8 @@
     <Compile Include="TestMethodes.cs" />
     <Compile Include="TransleerTests.cs" />
     <Compile Include="RotatieTest.cs" />
+    <Compile Include="InporductTests.cs" />
+    <Compile Include="UitproductTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lin-eindopdracht\lin-eindopdracht.csproj">
