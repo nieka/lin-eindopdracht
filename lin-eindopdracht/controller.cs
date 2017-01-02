@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Shapes;
 
 namespace lin_eindopdracht
 {
@@ -49,7 +52,32 @@ namespace lin_eindopdracht
             voertuig.matrix = Matrix3D.vermenigvuldig(voertuig.matrix, Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix));
             naberekening(voertuig);
 
+            //draw everthing
+            canvas.Children.Clear();
+            
+            //drawing voertuig
+            PointCollection voertuigPointCollection = new PointCollection();
+            //adding the point to voertuigPointCollection
+            for (int i = 0; i < voertuig.matrix[0].Count; i++)
+            {
+                //de x,y,z en w waardes ophalen
+                double x = voertuig.matrix[0][i];
+                double y = voertuig.matrix[1][i];
+                double z = voertuig.matrix[2][i];
+                double w = voertuig.matrix[3][i];
+                
+                //if w is smaller then 0 we don't need to draw it
+                if(w >= 0)
+                {
+                    voertuigPointCollection.Add(new Point(x,y));
+                }
+            }
 
+            Polygon voertuigPolygon = new Polygon();
+            voertuigPolygon.Points = voertuigPointCollection;
+            voertuigPolygon.Stroke = Brushes.Black;
+            voertuigPolygon.StrokeThickness = 1;
+            canvas.Children.Add(voertuigPolygon);
 
         }
 
