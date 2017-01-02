@@ -26,17 +26,17 @@ namespace lin_eindopdracht
         {
             this.canvas = canvas;
 
-            List<List<double>> voertuigMatrix = new List<List<double>>{
-                new List<double> {1,10,1,10,1,10,1,10}, //x
-                new List<double> {1,1,10,10,1,1,10,10}, //y
-                new List<double> {1,1,1,1,10,10,10,10}  //z
-            };
-
             //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {1,10}, //x
-            //    new List<double> {1,10}, //y
-            //    new List<double> {1,10}  //z
+            //    new List<double> {1,50 ,1,50 ,1,50 ,1,50}, //x
+            //    new List<double> {1,1 ,50,50 ,1,1 ,50,50}, //y
+            //    new List<double> {1,1 ,1,1 ,50,1 ,50,50}  //z
             //};
+
+            List<List<double>> voertuigMatrix = new List<List<double>>{
+                new List<double> {40,40,70,70, 40,70,70,40}, //x
+                new List<double> {40,70,70,40, 40,40,70,70}, //y
+                new List<double> {40,40,40,40, 70,40,70,70}  //z
+            };
 
             voertuig = new Matrix3D(voertuigMatrix);
 
