@@ -57,6 +57,7 @@
     <Compile Include="MatrixSchaalTests.cs" />
     <Compile Include="TestMethodes.cs" />
     <Compile Include="TransleerTests.cs" />
+    <Compile Include="RotatieTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lin-eindopdracht\lin-eindopdracht.csproj">

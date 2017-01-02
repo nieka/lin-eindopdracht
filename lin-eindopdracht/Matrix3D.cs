@@ -27,21 +27,36 @@ namespace lin_eindopdracht
             matrix = Matrix3D.vermenigvuldig(S_matrix, matrix);
         }
 
-        public void rotated(double graden)
+        public void rotated(double graden, RotateType type)
         {
             //rotate code voor een 2d matrix
-            //graden = ConvertToRadians(graden);
+            graden = ConvertToRadians(graden);
 
-            //List<List<double>> R_matrix = new List<List<double>>();
-            //R_matrix.Add(new List<double>());
-            //R_matrix.Add(new List<double>());
-            //R_matrix[0].Add(Math.Cos(graden));
-            //R_matrix[0].Add(Math.Sin(-1 * graden));
-            //R_matrix[1].Add(Math.Sin(graden));
-            //R_matrix[1].Add(Math.Cos(graden));
+            List<List<double>> R_matrix = new List<List<double>>();
 
-            ////vermenigvuldig de matrix
-            //matrix = Matrix3D.vermenigvuldig(R_matrix, matrix);
+            switch (type)
+            {
+                case RotateType.XAS:
+                    R_matrix.Add(new List<double>() { 1, 0, 0 });
+                    R_matrix.Add(new List<double>() { 0, Math.Cos(graden), -1 * Math.Sin(graden) });
+                    R_matrix.Add(new List<double>() { 0 , Math.Sin(graden) , Math.Cos(graden) });
+                    break;
+                case RotateType.YAS:
+                    R_matrix.Add(new List<double>() { Math.Cos(graden), 0, -1 * Math.Sin(graden) });
+                    R_matrix.Add(new List<double>() { 0, 1, 0 });
+                    R_matrix.Add(new List<double>() { Math.Sin(graden), 0 ,Math.Cos(graden) });
+                    break;
+
+                case RotateType.ZAS:
+                    R_matrix.Add(new List<double>() { Math.Cos(graden),-1 * Math.Sin(graden), 0 });
+                    R_matrix.Add(new List<double>() { Math.Sin(graden),Math.Cos(graden), 0 });
+                    R_matrix.Add(new List<double>() { 0,0,1});
+                    break;
+            }
+            
+
+            //vermenigvuldig de matrix
+            matrix = Matrix3D.vermenigvuldig(R_matrix, matrix);
         }
 
         public double ConvertToRadians(double angle)

@@ -29,7 +29,7 @@ namespace UnitTestProject
             {
                 for (int j = 0; j < matrix1[i].Count; j++)
                 {
-                    if (matrix1[i][j] != matrix2[i][j])
+                    if (Math.Round(matrix1[i][j],9) != Math.Round(matrix2[i][j],9))
                     {
                         return false;
                     }

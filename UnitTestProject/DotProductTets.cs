@@ -8,7 +8,7 @@ namespace UnitTestProject
     public class DotProductTets
     {
         [TestMethod]
-        public void DotProductTestPsitiveNumbers()
+        public void DotProductTestPositiveNumbers()
         {
             List<List<double>> matrixLijst1 = new List<List<double>>();
             matrixLijst1.Add(new List<double> { 1, 2, 3});
