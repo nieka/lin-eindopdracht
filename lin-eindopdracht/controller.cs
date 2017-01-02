@@ -33,8 +33,8 @@ namespace lin_eindopdracht
             };
             voertuig = new Matrix3D(voertuigMatrix);
 
-            eye = new Vector3D(0, 0, 20);
-            lookAt = new Vector3D(0, 0, 0);
+            eye = new Vector3D(20, 20, 20);
+            lookAt = new Vector3D(5, 5, 5);
             up = new Vector3D(0, 1, 0);
 
 
@@ -47,9 +47,11 @@ namespace lin_eindopdracht
             Matrix3D cameraMatrix = getCameraMatrix();
             Matrix3D projectieMatrix = getProjectieMatrix();
 
+            Matrix3D temp = new Matrix3D(null);
 
             //drawig voertuig
-            voertuig.matrix = Matrix3D.vermenigvuldig(voertuig.matrix, Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix));
+            voertuig.matrix.Add(new List<double> { 0,0,0,0,0,0,0,0});
+            voertuig.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix),voertuig.matrix);
             naberekening(voertuig);
 
             //draw everthing
@@ -65,12 +67,9 @@ namespace lin_eindopdracht
                 double y = voertuig.matrix[1][i];
                 double z = voertuig.matrix[2][i];
                 double w = voertuig.matrix[3][i];
-                
+
                 //if w is smaller then 0 we don't need to draw it
-                if(w >= 0)
-                {
-                    voertuigPointCollection.Add(new Point(x,y));
-                }
+                voertuigPointCollection.Add(new Point(x, y));
             }
 
             Polygon voertuigPolygon = new Polygon();
