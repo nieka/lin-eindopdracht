@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="controller.cs" />
     <Compile Include="RotateType.cs" />
     <Compile Include="Vector3D.cs" />
     <Page Include="MainWindow.xaml">

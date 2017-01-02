@@ -20,9 +20,13 @@ namespace lin_eindopdracht
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private controller controller;
         public MainWindow()
         {
             InitializeComponent();
+
+            controller = new controller(canvas);
         }
     }
 }
