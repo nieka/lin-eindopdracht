@@ -27,16 +27,28 @@ namespace lin_eindopdracht
             this.canvas = canvas;
 
             //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {1,50 ,1,50 ,1,50 ,1,50}, //x
-            //    new List<double> {1,1 ,50,50 ,1,1 ,50,50}, //y
-            //    new List<double> {1,1 ,1,1 ,50,1 ,50,50}  //z
+            //    new List<double> {1,50,1,50, 1,50,1,50}, //x
+            //    new List<double> {1,1,50,50, 1,1,50,50}, //y
+            //    new List<double> {1,1,1,1, 50,1,50,50}  //z
+            //};
+
+            //List<List<double>> voertuigMatrix = new List<List<double>>{
+            //    new List<double> {40,40,40,70, 40,70,70,40}, //x
+            //    new List<double> {40,70,70,40, 40,40,70,70}, //y
+            //    new List<double> {40,40,40,40, 70,40,70,70}  //z
             //};
 
             List<List<double>> voertuigMatrix = new List<List<double>>{
-                new List<double> {40,40,70,70, 40,70,70,40}, //x
-                new List<double> {40,70,70,40, 40,40,70,70}, //y
-                new List<double> {40,40,40,40, 70,40,70,70}  //z
+                new List<double> {50,50,70,70, 70,50,70,50}, //x
+                new List<double> {50,50,50,50, 70,70,70,70}, //y
+                new List<double> {50,70,70,50, 70,70,50,50}  //z
             };
+
+            //List<List<double>> voertuigMatrix = new List<List<double>>{
+            //    new List<double> {50,50,70,70, 70,70,50,50}, //x
+            //    new List<double> {50,70,70,50, 50,70,50,70}, //y
+            //    new List<double> {50,50,50,50, 70,70,70,70}  //z
+            //};                  //?  ?  ?  g   ?  ?  ?   ?
 
             voertuig = new Matrix3D(voertuigMatrix);
 
@@ -56,8 +68,8 @@ namespace lin_eindopdracht
             Matrix3D temp = new Matrix3D(null);
 
             //drawig voertuig
-             voertuig.matrix.Add(new List<double> { 1,1,1,1,1,1,1,1});
-          //voertuig.matrix.Add(new List<double> { 1,1});
+            //voertuig.matrix.Add(new List<double> { 0,0,0,0,0,0,0,0});
+            voertuig.matrix.Add(new List<double> {1,1,1,1,1,1,1,1});
             voertuig.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix),voertuig.matrix);
             naberekening(voertuig);
 
@@ -79,12 +91,130 @@ namespace lin_eindopdracht
                 voertuigPointCollection.Add(new Point(x, y));
             }
 
-            Polygon voertuigPolygon = new Polygon();
-            voertuigPolygon.Points = voertuigPointCollection;
-            voertuigPolygon.Stroke = Brushes.Black;
-            voertuigPolygon.StrokeThickness = 1;
-            canvas.Children.Add(voertuigPolygon);
+            drawMatrix(voertuigPointCollection);
+        }
 
+        public void drawMatrix(PointCollection points)
+        {
+            //bottom
+            SolidColorBrush botColour = new SolidColorBrush();
+            botColour.Color = Colors.Blue;
+
+            PointCollection bottom = new PointCollection();
+
+            for(int i = 0; i < 4; i++)
+            {
+                bottom.Add(points[i]);
+            }
+
+            Polygon voertuigPolygonBottom = new Polygon();
+            voertuigPolygonBottom.Points = bottom;
+            voertuigPolygonBottom.Stroke = Brushes.Black;
+            voertuigPolygonBottom.StrokeThickness = 1;
+
+            voertuigPolygonBottom.Fill = botColour;
+
+            canvas.Children.Add(voertuigPolygonBottom);
+
+
+            //back
+            SolidColorBrush backColour = new SolidColorBrush();
+            backColour.Color = Colors.Yellow;
+            PointCollection back = new PointCollection();
+
+            back.Add(points[0]);
+            back.Add(points[1]);
+            back.Add(points[5]);
+            back.Add(points[7]);
+
+            Polygon voertuigPolygonback = new Polygon();
+            voertuigPolygonback.Points = back;
+            voertuigPolygonback.Stroke = Brushes.Black;
+            voertuigPolygonback.StrokeThickness = 1;
+
+            voertuigPolygonback.Fill = backColour;
+
+            canvas.Children.Add(voertuigPolygonback);
+
+
+            //left
+            SolidColorBrush leftColour = new SolidColorBrush();
+            leftColour.Color = Colors.Green;
+            PointCollection left = new PointCollection();
+
+            left.Add(points[0]);
+            left.Add(points[3]);
+            left.Add(points[6]);
+            left.Add(points[7]);
+
+            Polygon voertuigPolygonleft = new Polygon();
+            voertuigPolygonleft.Points = left;
+            voertuigPolygonleft.Stroke = Brushes.Black;
+            voertuigPolygonleft.StrokeThickness = 1;
+
+            voertuigPolygonleft.Fill = leftColour;
+
+            canvas.Children.Add(voertuigPolygonleft);
+
+
+            //right
+            SolidColorBrush rightColour = new SolidColorBrush();
+            rightColour.Color = Colors.Red;
+            PointCollection right = new PointCollection();
+
+            right.Add(points[1]);
+            right.Add(points[2]);
+            right.Add(points[4]);
+            right.Add(points[5]);
+
+            Polygon voertuigPolygonright = new Polygon();
+            voertuigPolygonright.Points = right;
+            voertuigPolygonright.Stroke = Brushes.Black;
+            voertuigPolygonright.StrokeThickness = 1;
+
+            voertuigPolygonright.Fill = rightColour;
+
+            canvas.Children.Add(voertuigPolygonright);
+
+
+            //front
+            SolidColorBrush frontColour = new SolidColorBrush();
+            frontColour.Color = Colors.Purple;
+            PointCollection front = new PointCollection();
+
+            front.Add(points[2]);
+            front.Add(points[3]);
+            front.Add(points[6]);
+            front.Add(points[4]);
+
+            Polygon voertuigPolygonfront = new Polygon();
+            voertuigPolygonfront.Points = front;
+            voertuigPolygonfront.Stroke = Brushes.Black;
+            voertuigPolygonfront.StrokeThickness = 1;
+
+            voertuigPolygonfront.Fill = frontColour;
+
+            canvas.Children.Add(voertuigPolygonfront);
+
+
+            //top
+            SolidColorBrush topColour = new SolidColorBrush();
+            topColour.Color = Colors.Aqua;
+            PointCollection top = new PointCollection();
+
+            top.Add(points[4]);
+            top.Add(points[6]);
+            top.Add(points[7]);
+            top.Add(points[5]);
+
+            Polygon voertuigPolygontop = new Polygon();
+            voertuigPolygontop.Points = top;
+            voertuigPolygontop.Stroke = Brushes.Black;
+            voertuigPolygontop.StrokeThickness = 1;
+
+            voertuigPolygontop.Fill = topColour;
+
+            canvas.Children.Add(voertuigPolygontop);
         }
 
         public void naberekening(Matrix3D matrix)
