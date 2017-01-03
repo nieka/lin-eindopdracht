@@ -32,23 +32,11 @@ namespace lin_eindopdracht
             //    new List<double> {1,1,1,1, 50,1,50,50}  //z
             //};
 
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {40,40,40,70, 40,70,70,40}, //x
-            //    new List<double> {40,70,70,40, 40,40,70,70}, //y
-            //    new List<double> {40,40,40,40, 70,40,70,70}  //z
-            //};
-
             List<List<double>> voertuigMatrix = new List<List<double>>{
                 new List<double> {50,50,70,70, 70,50,70,50}, //x
                 new List<double> {50,50,50,50, 70,70,70,70}, //y
                 new List<double> {50,70,70,50, 70,70,50,50}  //z
             };
-
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {50,50,70,70, 70,70,50,50}, //x
-            //    new List<double> {50,70,70,50, 50,70,50,70}, //y
-            //    new List<double> {50,50,50,50, 70,70,70,70}  //z
-            //};                  //?  ?  ?  g   ?  ?  ?   ?
 
             voertuig = new Matrix3D(voertuigMatrix);
 
