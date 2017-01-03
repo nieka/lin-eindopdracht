@@ -59,11 +59,6 @@ namespace lin_eindopdracht
             matrix = Matrix3D.vermenigvuldig(R_matrix, matrix);
         }
 
-        public static double ConvertToRadians(double angle)
-        {
-            return (Math.PI / 180) * angle;
-        }
-
         public void transleer(float x, float y,float z)
         {
             //maak schaal matrix aan
@@ -99,6 +94,108 @@ namespace lin_eindopdracht
             M_matrix.Add(rekenlist);
             matrix = Matrix3D.vermenigvuldig(T_matrix, M_matrix);
             matrix.RemoveAt(matrix.Count - 1);
+        }
+
+        //static methodes
+        public static double ConvertToRadians(double angle)
+        {
+            return (Math.PI / 180) * angle;
+        }
+
+        public static List<List<double>> inverse(List<List<double>> matrix)
+        {
+            double temp = Matrix3D.Determinant(matrix);
+            //check if we can calculate the inverse
+            if (temp == 0)
+            {
+                return null;
+            }
+
+            //identiteitMatrix matrix
+            List<List<double>> identiteitsmatrix = new List<List<double>>();
+            identiteitsmatrix.Add(new List<double> { 1, 0, 0 });
+            identiteitsmatrix.Add(new List<double> { 0, 1, 0 });
+            identiteitsmatrix.Add(new List<double> { 0, 0, 1 });
+
+            //zet de rij met de hoogste waarde bovenaan
+            int highstrow = 0;
+            double highstNumber = 0;
+            for (int i = 0; i < matrix.Count; i++)
+            {
+                for(int j=0; j<matrix[i].Count; j++)
+                {
+                    if(matrix[i][j] > highstNumber)
+                    {
+                        highstNumber = matrix[i][j];
+                        highstrow = i;
+                    }
+                }
+            }
+
+            List<double> tempRow = matrix[0];
+            matrix[0] = matrix[highstrow];
+            matrix[highstrow] = tempRow;
+            tempRow = identiteitsmatrix[0];
+            identiteitsmatrix[0] = identiteitsmatrix[highstrow];
+            identiteitsmatrix[highstrow] = tempRow;
+
+
+            //Per colum zetten we de identiteit matrix naar de normale matrix
+            for (int i=0; i<matrix[0].Count; i++)
+            {
+                //multiply to get 1 on the correct position
+                double multiplier = 1 / matrix[i][i];
+                //multiply the whole row 
+                for(int j=0; j< matrix[0].Count; j++)
+                {
+                    //we can use here the i as first parameter because we know that the amtrix is a sqaure
+                    matrix[i][j] *= multiplier;
+                    identiteitsmatrix[i][j] *= multiplier;
+                }
+
+                //make the other number in the collom zero
+                //set the other collom values to zero
+                for (int j = 0; j < matrix.Count; j++)
+                {
+                    //we want to make the other collums zero so we don't pick the collum we multiplayed
+                    if(i!= j)
+                    {
+                        if (matrix[j][i] != 0)
+                        {
+                            multiplier = matrix[j][i];
+
+                            for (int k = 0; k < matrix[j].Count; k++)
+                            {
+                                matrix[j][k] -= multiplier * matrix[i][k];
+                                identiteitsmatrix[j][k] -= multiplier * identiteitsmatrix[i][k];
+                            }
+                        }
+                    }
+                }
+            }
+
+            return identiteitsmatrix;
+        }
+
+        public static double Determinant(List<List<double>> matrix)
+        {
+            //check if it is a 3 x 3 matrix
+            if(matrix.Count != 3 || matrix[0].Count != 3)
+            {
+                return 0;
+            }
+            double a = matrix[0][0];
+            double b = matrix[0][1];
+            double c = matrix[0][2];
+            double d = matrix[1][0];
+            double e = matrix[1][1];
+            double f = matrix[1][2];
+            double g = matrix[2][0];
+            double h = matrix[2][1];
+            double i = matrix[2][2];
+
+            return a * (e * i - h * f ) - d *(b*i - h*c)+g*(b*f - e*c);
+
         }
 
         public static List<List<double>> vermenigvuldig(List<List<double>> matrix1, List<List<double>> matrix2)
