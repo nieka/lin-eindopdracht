@@ -73,29 +73,33 @@ namespace lin_eindopdracht
             voertuig.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix),voertuig.matrix);
             naberekening(voertuig);
 
-            //draw everthing
+            //clear canvas
             canvas.Children.Clear();
             
-            //drawing voertuig
-            PointCollection voertuigPointCollection = new PointCollection();
+            //draw voertuig matrix
+            drawMatrix(voertuig.matrix);
+        }
+
+
+        public void drawMatrix(List<List<double>> list)
+        {
+
+            PointCollection points = new PointCollection();
+
             //adding the point to voertuigPointCollection
             for (int i = 0; i < voertuig.matrix[0].Count; i++)
             {
-                //de x,y,z en w waardes ophalen
-                double x = voertuig.matrix[0][i];
-                double y = voertuig.matrix[1][i];
-                double z = voertuig.matrix[2][i];
-                double w = voertuig.matrix[3][i];
+                //collection the x,y,z,w values of the matrix
+                double x = list[0][i];
+                double y = list[1][i];
+                double z = list[2][i];
+                double w = list[3][i];
 
                 //if w is smaller then 0 we don't need to draw it
-                voertuigPointCollection.Add(new Point(x, y));
+                points.Add(new Point(x, y));
             }
 
-            drawMatrix(voertuigPointCollection);
-        }
 
-        public void drawMatrix(PointCollection points)
-        {
             //bottom
             SolidColorBrush botColour = new SolidColorBrush();
             botColour.Color = Colors.Blue;
@@ -107,6 +111,7 @@ namespace lin_eindopdracht
                 bottom.Add(points[i]);
             }
 
+            //creating polygon shape for side
             Polygon voertuigPolygonBottom = new Polygon();
             voertuigPolygonBottom.Points = bottom;
             voertuigPolygonBottom.Stroke = Brushes.Black;
@@ -127,6 +132,7 @@ namespace lin_eindopdracht
             back.Add(points[5]);
             back.Add(points[7]);
 
+            //creating polygon shape for side
             Polygon voertuigPolygonback = new Polygon();
             voertuigPolygonback.Points = back;
             voertuigPolygonback.Stroke = Brushes.Black;
@@ -147,6 +153,7 @@ namespace lin_eindopdracht
             left.Add(points[6]);
             left.Add(points[7]);
 
+            //creating polygon shape for side
             Polygon voertuigPolygonleft = new Polygon();
             voertuigPolygonleft.Points = left;
             voertuigPolygonleft.Stroke = Brushes.Black;
@@ -167,6 +174,7 @@ namespace lin_eindopdracht
             right.Add(points[4]);
             right.Add(points[5]);
 
+            //creating polygon shape for side
             Polygon voertuigPolygonright = new Polygon();
             voertuigPolygonright.Points = right;
             voertuigPolygonright.Stroke = Brushes.Black;
@@ -187,6 +195,7 @@ namespace lin_eindopdracht
             front.Add(points[6]);
             front.Add(points[4]);
 
+            //creating polygon shape for side
             Polygon voertuigPolygonfront = new Polygon();
             voertuigPolygonfront.Points = front;
             voertuigPolygonfront.Stroke = Brushes.Black;
@@ -207,6 +216,7 @@ namespace lin_eindopdracht
             top.Add(points[7]);
             top.Add(points[5]);
 
+            //creating polygon shape for side
             Polygon voertuigPolygontop = new Polygon();
             voertuigPolygontop.Points = top;
             voertuigPolygontop.Stroke = Brushes.Black;
