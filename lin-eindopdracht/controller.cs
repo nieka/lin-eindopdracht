@@ -62,26 +62,26 @@ namespace lin_eindopdracht
             tempVoertuigMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
             tempVoertuigMatrix.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix), tempVoertuigMatrix.matrix);
             naberekening(tempVoertuigMatrix);
-            Console.WriteLine("-------------------x waardes -----------------");
-            for(int i=0; i< tempVoertuigMatrix.matrix[0].Count; i++)
-            {
-                Console.WriteLine(tempVoertuigMatrix.matrix[0][i]);
-            }
-            Console.WriteLine("-------------------y waardes -----------------");
-            for (int i = 0; i < tempVoertuigMatrix.matrix[1].Count; i++)
-            {
-                Console.WriteLine(tempVoertuigMatrix.matrix[1][i]);
-            }
+            //Console.WriteLine("-------------------x waardes -----------------");
+            //for(int i=0; i< tempVoertuigMatrix.matrix[0].Count; i++)
+            //{
+            //    Console.WriteLine(tempVoertuigMatrix.matrix[0][i]);
+            //}
+            //Console.WriteLine("-------------------y waardes -----------------");
+            //for (int i = 0; i < tempVoertuigMatrix.matrix[1].Count; i++)
+            //{
+            //    Console.WriteLine(tempVoertuigMatrix.matrix[1][i]);
+            //}
             Console.WriteLine("-------------------z waardes -----------------");
             for (int i = 0; i < tempVoertuigMatrix.matrix[2].Count; i++)
             {
                 Console.WriteLine(tempVoertuigMatrix.matrix[2][i]);
             }
-            Console.WriteLine("-------------------w waardes -----------------");
-            for (int i = 0; i < tempVoertuigMatrix.matrix[3].Count; i++)
-            {
-                Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
-            }
+            //Console.WriteLine("-------------------w waardes -----------------");
+            //for (int i = 0; i < tempVoertuigMatrix.matrix[3].Count; i++)
+            //{
+            //    Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
+            //}
 
             //clear canvas
             canvas.Children.Clear();
@@ -170,7 +170,7 @@ namespace lin_eindopdracht
             
             //right
             SolidColorBrush rightColour = new SolidColorBrush();
-            rightColour.Color = Colors.Red;
+            rightColour.Color = Colors.Blue;
             PointCollection right = new PointCollection();
 
             right.Add(points[1]);
@@ -192,7 +192,7 @@ namespace lin_eindopdracht
             
             //front
             SolidColorBrush frontColour = new SolidColorBrush();
-            frontColour.Color = Colors.Purple;
+            frontColour.Color = Colors.Blue;
             PointCollection front = new PointCollection();
 
             front.Add(points[4]);
@@ -214,7 +214,7 @@ namespace lin_eindopdracht
 
             //left
             SolidColorBrush leftColour = new SolidColorBrush();
-            leftColour.Color = Colors.Green;
+            leftColour.Color = Colors.Blue;
             PointCollection left = new PointCollection();
 
             left.Add(points[0]);
@@ -236,7 +236,7 @@ namespace lin_eindopdracht
 
             //back
             SolidColorBrush backColour = new SolidColorBrush();
-            backColour.Color = Colors.Yellow;
+            backColour.Color = Colors.Blue;
             PointCollection back = new PointCollection();
 
             back.Add(points[0]);
@@ -258,7 +258,7 @@ namespace lin_eindopdracht
 
             // //top
             SolidColorBrush topColour = new SolidColorBrush();
-            topColour.Color = Colors.Aqua;
+            topColour.Color = Colors.Blue;
             PointCollection top = new PointCollection();
 
             top.Add(points[1]);
@@ -312,8 +312,8 @@ namespace lin_eindopdracht
             List<List<double>> projectieMatrix = new List<List<double>>{
                 new List<double> { scale, 0,0,0 }, //x
                 new List<double> {0, scale,0,0}, //y
-                new List<double> {0,0,-(far + near) / (far-near), -1},  //z
-                new List<double> {0,0,-(2 * far * near) / (far - near) ,0}
+                new List<double> {0,0,-far / (far-near), -1},  //z
+                new List<double> {0,0,(-far * near) / (far - near) ,0}
             };
 
             return new Matrix3D(projectieMatrix);
