@@ -58,6 +58,7 @@
     <Compile Include="controller.cs" />
     <Compile Include="RotateType.cs" />
     <Compile Include="Vector3D.cs" />
+    <Compile Include="voertuig.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

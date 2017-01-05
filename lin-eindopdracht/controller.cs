@@ -14,7 +14,7 @@ namespace lin_eindopdracht
     class controller
     {
         private Canvas canvas;
-        private Matrix3D voertuig;
+        private voertuig voertuig;
 
         //vairable for drawing 
         private Vector3D eye;
@@ -26,20 +26,7 @@ namespace lin_eindopdracht
         public controller(Canvas canvas)
         {
             this.canvas = canvas;
-
-            List<List<double>> voertuigMatrix = new List<List<double>>{
-                new List<double> {0,50,0,50, 0,50,0,50}, //x
-                new List<double> {0,0,50,50, 0,0,50,50}, //y
-                new List<double> {0,0,0,0,   50,50,50,50}  //z
-            };
-
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {1,5,1,5   ,1,5,1,5}, //x
-            //    new List<double> {1,1,5,5   ,1,1,5,5 }, //y
-            //    new List<double> {1,1,1,1   ,5,5,5,5}  //z
-            //};
-
-            voertuig = new Matrix3D(voertuigMatrix);
+            voertuig = new voertuig(0, 0,0);
 
             eye = new Vector3D(200, 200, 200);
             lookAt = new Vector3D(0, 0, 0);
@@ -54,7 +41,7 @@ namespace lin_eindopdracht
             Matrix3D cameraMatrix = getCameraMatrix();
             Matrix3D projectieMatrix = getProjectieMatrix();
 
-            Matrix3D tempVoertuigMatrix = new Matrix3D(voertuig.matrix);
+            Matrix3D tempVoertuigMatrix = new Matrix3D(voertuig.matrix.matrix);
 
            
 
@@ -77,11 +64,11 @@ namespace lin_eindopdracht
             {
                 Console.WriteLine(tempVoertuigMatrix.matrix[2][i]);
             }
-            //Console.WriteLine("-------------------w waardes -----------------");
-            //for (int i = 0; i < tempVoertuigMatrix.matrix[3].Count; i++)
-            //{
-            //    Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
-            //}
+            Console.WriteLine("-------------------w waardes -----------------");
+            for (int i = 0; i < tempVoertuigMatrix.matrix[3].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
+            }
 
             //clear canvas
             canvas.Children.Clear();
@@ -89,7 +76,7 @@ namespace lin_eindopdracht
             //draw voertuig matrix
             drawMatrix(tempVoertuigMatrix.matrix);
 
-            voertuig.matrix.RemoveAt(voertuig.matrix.Count - 1);
+            voertuig.matrix.matrix.RemoveAt(voertuig.matrix.matrix.Count - 1);
 
 
         }
@@ -101,19 +88,19 @@ namespace lin_eindopdracht
             {
                 case Key.Up:
                     //move up
-                    voertuig.transleer(0, -transleerValue, 0);
+                    voertuig.matrix.transleer(0, -transleerValue, 0);
                     break;
                 case Key.Down:
                     //move back
-                    voertuig.transleer(0, transleerValue, 0);
+                    voertuig.matrix.transleer(0, transleerValue, 0);
                     break;
                 case Key.Left:
                     //move left
-                    voertuig.transleer(-transleerValue, 0, 0);
+                    voertuig.matrix.transleer(-transleerValue, 0, 0);
                     break;
                 case Key.Right:
                     //move right
-                    voertuig.transleer(transleerValue, 0, 0);
+                    voertuig.matrix.transleer(transleerValue, 0, 0);
                     break;
                 case Key.Q:
                     //Q
@@ -133,7 +120,7 @@ namespace lin_eindopdracht
             PointCollection points = new PointCollection();
 
             //adding the point to voertuigPointCollection
-            for (int i = 0; i < voertuig.matrix[0].Count; i++)
+            for (int i = 0; i < voertuig.matrix.matrix[0].Count; i++)
             {
                 //collection the x,y,z,w values of the matrix
                 double x = list[0][i];
