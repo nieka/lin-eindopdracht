@@ -71,8 +71,6 @@ namespace lin_eindopdracht
 
         public void drawMatrix(List<List<double>> list)
         {
-
-
             PointCollection points = new PointCollection();
 
             //adding the point to voertuigPointCollection
@@ -94,20 +92,10 @@ namespace lin_eindopdracht
             botColour.Color = Colors.Blue;
 
             PointCollection bottom = new PointCollection();
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {1,5,1,5   ,1,5,1,5}, //x
-            //    new List<double> {1,1,5,5   ,1,1,5,5 }, //y
-            //    new List<double> {1,1,1,1   ,5,5,5,5}  //z
-            //};
             bottom.Add(points[2]);
             bottom.Add(points[3]);
-
             bottom.Add(points[7]);
             bottom.Add(points[6]);
-            //bottom.Add(new Point(0, 10));
-            //bottom.Add(new Point(10, 10));
-            //bottom.Add(new Point(10, 20));
-            //bottom.Add(new Point(0, 20));
 
 
             //creating polygon shape for side
@@ -119,28 +107,50 @@ namespace lin_eindopdracht
             voertuigPolygonBottom.Fill = botColour;
 
             canvas.Children.Add(voertuigPolygonBottom);
-
-
-            //back
-            SolidColorBrush backColour = new SolidColorBrush();
-            backColour.Color = Colors.Yellow;
-            PointCollection back = new PointCollection();
-
-            back.Add(points[0]);
-            back.Add(points[1]);
-            back.Add(points[3]);
-            back.Add(points[2]);
             
+            
+            //right
+            SolidColorBrush rightColour = new SolidColorBrush();
+            rightColour.Color = Colors.Red;
+            PointCollection right = new PointCollection();
+
+            right.Add(points[1]);
+            right.Add(points[3]);
+            right.Add(points[7]);
+            right.Add(points[5]);
+
 
             //creating polygon shape for side
-            Polygon voertuigPolygonback = new Polygon();
-            voertuigPolygonback.Points = back;
-            voertuigPolygonback.Stroke = Brushes.Black;
-            voertuigPolygonback.StrokeThickness = 1;
+            Polygon voertuigPolygonright = new Polygon();
+            voertuigPolygonright.Points = right;
+            voertuigPolygonright.Stroke = Brushes.Black;
+            voertuigPolygonright.StrokeThickness = 1;
 
-            voertuigPolygonback.Fill = backColour;
+            voertuigPolygonright.Fill = rightColour;
 
-            canvas.Children.Add(voertuigPolygonback);
+            canvas.Children.Add(voertuigPolygonright);
+            
+            
+            //front
+            SolidColorBrush frontColour = new SolidColorBrush();
+            frontColour.Color = Colors.Purple;
+            PointCollection front = new PointCollection();
+
+            front.Add(points[4]);
+            front.Add(points[5]);
+            front.Add(points[7]);
+            front.Add(points[6]);
+
+
+            //creating polygon shape for side
+            Polygon voertuigPolygonfront = new Polygon();
+            voertuigPolygonfront.Points = front;
+            voertuigPolygonfront.Stroke = Brushes.Black;
+            voertuigPolygonfront.StrokeThickness = 1;
+
+            voertuigPolygonfront.Fill = frontColour;
+
+            canvas.Children.Add(voertuigPolygonfront);
 
 
             //left
@@ -165,71 +175,48 @@ namespace lin_eindopdracht
             canvas.Children.Add(voertuigPolygonleft);
 
 
-            //right
-            SolidColorBrush rightColour = new SolidColorBrush();
-            rightColour.Color = Colors.Red;
-            PointCollection right = new PointCollection();
+            //back
+            SolidColorBrush backColour = new SolidColorBrush();
+            backColour.Color = Colors.Yellow;
+            PointCollection back = new PointCollection();
 
-            right.Add(points[1]);
-            right.Add(points[3]);
-            right.Add(points[7]);
-            right.Add(points[5]);
-
-
-            //creating polygon shape for side
-            Polygon voertuigPolygonright = new Polygon();
-            voertuigPolygonright.Points = right;
-            voertuigPolygonright.Stroke = Brushes.Black;
-            voertuigPolygonright.StrokeThickness = 1;
-
-            voertuigPolygonright.Fill = rightColour;
-
-            canvas.Children.Add(voertuigPolygonright);
-
-
-            //front
-            SolidColorBrush frontColour = new SolidColorBrush();
-            frontColour.Color = Colors.Purple;
-            PointCollection front = new PointCollection();
-
-            front.Add(points[4]);
-            front.Add(points[5]);
-            front.Add(points[7]);
-            front.Add(points[6]);
+            back.Add(points[0]);
+            back.Add(points[1]);
+            back.Add(points[3]);
+            back.Add(points[2]);
 
 
             //creating polygon shape for side
-            Polygon voertuigPolygonfront = new Polygon();
-            voertuigPolygonfront.Points = front;
-            voertuigPolygonfront.Stroke = Brushes.Black;
-            voertuigPolygonfront.StrokeThickness = 1;
+            Polygon voertuigPolygonback = new Polygon();
+            voertuigPolygonback.Points = back;
+            voertuigPolygonback.Stroke = Brushes.Black;
+            voertuigPolygonback.StrokeThickness = 1;
 
-            voertuigPolygonfront.Fill = frontColour;
+            voertuigPolygonback.Fill = backColour;
 
-            canvas.Children.Add(voertuigPolygonfront);
-
-
-           // //top
-           // SolidColorBrush topColour = new SolidColorBrush();
-           // topColour.Color = Colors.Aqua;
-           // PointCollection top = new PointCollection();
-
-           // top.Add(points[1]);
-           // top.Add(points[2]);
-           // top.Add(points[4]);
-           // top.Add(points[5]);
+            canvas.Children.Add(voertuigPolygonback);
 
 
+            // //top
+            SolidColorBrush topColour = new SolidColorBrush();
+            topColour.Color = Colors.Aqua;
+            PointCollection top = new PointCollection();
 
-           //// creating polygon shape for side
-           // Polygon voertuigPolygontop = new Polygon();
-           // voertuigPolygontop.Points = top;
-           // voertuigPolygontop.Stroke = Brushes.Black;
-           // voertuigPolygontop.StrokeThickness = 1;
+            top.Add(points[1]);
+            top.Add(points[0]);
+            top.Add(points[4]);
+            top.Add(points[5]);
 
-           // voertuigPolygontop.Fill = topColour;
+           // creating polygon shape for side
+            Polygon voertuigPolygontop = new Polygon();
+            voertuigPolygontop.Points = top;
+            voertuigPolygontop.Stroke = Brushes.Black;
+            voertuigPolygontop.StrokeThickness = 1;
 
-           // canvas.Children.Add(voertuigPolygontop);
+            voertuigPolygontop.Fill = topColour;
+
+            canvas.Children.Add(voertuigPolygontop);
+            
         }
 
         public void naberekening(Matrix3D matrix)
