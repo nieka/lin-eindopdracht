@@ -14,24 +14,36 @@ namespace lin_eindopdracht
     class controller
     {
         private Canvas canvas;
+
+        //entiteiten
         private voertuig voertuig;
+        private Monster monster;
 
         //vairable for drawing 
         private Vector3D eye;
         private Vector3D lookAt;
         private Vector3D up;
 
-        private double screenSize = 600;
+        private double screenSize;
 
         public controller(Canvas canvas)
         {
             this.canvas = canvas;
+            screenSize = canvas.Width;
+
             voertuig = new voertuig(0, 0,0);
+            monster = new Monster(-200, -200, -200, canvas.Width, canvas.Height);
 
             eye = new Vector3D(200, 200, 200);
             lookAt = new Vector3D(0, 0, 0);
             up = new Vector3D(0, 1, 0);
 
+            draw();
+        }
+
+        public void update()
+        {
+            monster.grow();
             draw();
         }
 
@@ -41,24 +53,43 @@ namespace lin_eindopdracht
             Matrix3D cameraMatrix = getCameraMatrix();
             Matrix3D projectieMatrix = getProjectieMatrix();
 
+            //matrix used to transform the 3d points to matrix with are correctly shown in 2d
+            Matrix3D convertMatrix = new Matrix3D(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix));
+
+            //clear canvas
+            canvas.Children.Clear();
+
+            //draw voertuig
             Matrix3D tempVoertuigMatrix = new Matrix3D(voertuig.matrix.matrix);
-
-           
-
-            //drawig voertuig
             tempVoertuigMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
-            tempVoertuigMatrix.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix), tempVoertuigMatrix.matrix);
+            tempVoertuigMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempVoertuigMatrix.matrix);
             naberekening(tempVoertuigMatrix);
-            //Console.WriteLine("-------------------x waardes -----------------");
-            //for(int i=0; i< tempVoertuigMatrix.matrix[0].Count; i++)
-            //{
-            //    Console.WriteLine(tempVoertuigMatrix.matrix[0][i]);
-            //}
-            //Console.WriteLine("-------------------y waardes -----------------");
-            //for (int i = 0; i < tempVoertuigMatrix.matrix[1].Count; i++)
-            //{
-            //    Console.WriteLine(tempVoertuigMatrix.matrix[1][i]);
-            //}
+            drawMatrix(tempVoertuigMatrix.matrix);
+            voertuig.matrix.matrix.RemoveAt(voertuig.matrix.matrix.Count - 1);
+
+            //draw monster
+            Matrix3D tempMonsterMatrix = new Matrix3D(monster.matrix.matrix);
+            tempMonsterMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
+            tempMonsterMatrix.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix), tempMonsterMatrix.matrix);
+            naberekening(tempMonsterMatrix);
+            drawMatrix(tempMonsterMatrix.matrix);
+            monster.matrix.matrix.RemoveAt(monster.matrix.matrix.Count - 1);
+            
+
+        }
+
+        public void logMatrix(Matrix3D tempVoertuigMatrix)
+        {
+            Console.WriteLine("-------------------x waardes -----------------");
+            for (int i = 0; i < tempVoertuigMatrix.matrix[0].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[0][i]);
+            }
+            Console.WriteLine("-------------------y waardes -----------------");
+            for (int i = 0; i < tempVoertuigMatrix.matrix[1].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[1][i]);
+            }
             Console.WriteLine("-------------------z waardes -----------------");
             for (int i = 0; i < tempVoertuigMatrix.matrix[2].Count; i++)
             {
@@ -69,16 +100,6 @@ namespace lin_eindopdracht
             {
                 Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
             }
-
-            //clear canvas
-            canvas.Children.Clear();
-            
-            //draw voertuig matrix
-            drawMatrix(tempVoertuigMatrix.matrix);
-
-            voertuig.matrix.matrix.RemoveAt(voertuig.matrix.matrix.Count - 1);
-
-
         }
 
         public void move(Key k)
@@ -104,6 +125,7 @@ namespace lin_eindopdracht
                     break;
                 case Key.Q:
                     //Q
+                    
                     break;
                 case Key.E:
                     //E
