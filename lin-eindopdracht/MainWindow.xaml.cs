@@ -34,27 +34,7 @@ namespace lin_eindopdracht
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
         {
             Key k = e.Key;
-            switch (k)
-            {
-                case Key.Up:
-                    //move up
-                    break;
-                case Key.Down:
-                    //move back
-                    break;
-                case Key.Left:
-                    //move left
-                    break;
-                case Key.Right:
-                    //move right
-                    break;
-                case Key.Q:
-                    //Q
-                    break;
-                case Key.E:
-                    //E
-                    break; 
-            }
+            controller.move(k);
         }
     }
 }

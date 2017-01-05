@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -53,20 +54,78 @@ namespace lin_eindopdracht
             Matrix3D cameraMatrix = getCameraMatrix();
             Matrix3D projectieMatrix = getProjectieMatrix();
 
-            Matrix3D temp = new Matrix3D(null);
-            temp.matrix = Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix);
+            Matrix3D tempVoertuigMatrix = new Matrix3D(voertuig.matrix);
+
+           
 
             //drawig voertuig
-            voertuig.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
-            voertuig.matrix = Matrix3D.vermenigvuldig(temp.matrix,voertuig.matrix);
-            naberekening(voertuig);
+            tempVoertuigMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
+            tempVoertuigMatrix.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix), tempVoertuigMatrix.matrix);
+            naberekening(tempVoertuigMatrix);
+            Console.WriteLine("-------------------x waardes -----------------");
+            for(int i=0; i< tempVoertuigMatrix.matrix[0].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[0][i]);
+            }
+            Console.WriteLine("-------------------y waardes -----------------");
+            for (int i = 0; i < tempVoertuigMatrix.matrix[1].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[1][i]);
+            }
+            Console.WriteLine("-------------------z waardes -----------------");
+            for (int i = 0; i < tempVoertuigMatrix.matrix[2].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[2][i]);
+            }
+            Console.WriteLine("-------------------w waardes -----------------");
+            for (int i = 0; i < tempVoertuigMatrix.matrix[3].Count; i++)
+            {
+                Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
+            }
 
             //clear canvas
             canvas.Children.Clear();
             
             //draw voertuig matrix
-            drawMatrix(voertuig.matrix);
+            drawMatrix(tempVoertuigMatrix.matrix);
+
+            voertuig.matrix.RemoveAt(voertuig.matrix.Count - 1);
+
+
         }
+
+        public void move(Key k)
+        {
+            int transleerValue = 5;
+            switch (k)
+            {
+                case Key.Up:
+                    //move up
+                    voertuig.transleer(0, -transleerValue, 0);
+                    break;
+                case Key.Down:
+                    //move back
+                    voertuig.transleer(0, transleerValue, 0);
+                    break;
+                case Key.Left:
+                    //move left
+                    voertuig.transleer(-transleerValue, 0, 0);
+                    break;
+                case Key.Right:
+                    //move right
+                    voertuig.transleer(transleerValue, 0, 0);
+                    break;
+                case Key.Q:
+                    //Q
+                    break;
+                case Key.E:
+                    //E
+                    break;
+            }
+
+            draw();
+        }
+       
 
 
         public void drawMatrix(List<List<double>> list)
