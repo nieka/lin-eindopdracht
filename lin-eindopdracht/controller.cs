@@ -20,28 +20,28 @@ namespace lin_eindopdracht
         private Vector3D lookAt;
         private Vector3D up;
 
-        private double screenSize = 525;
+        private double screenSize = 600;
 
         public controller(Canvas canvas)
         {
             this.canvas = canvas;
 
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {1,50,1,50, 1,50,1,50}, //x
-            //    new List<double> {1,1,50,50, 1,1,50,50}, //y
-            //    new List<double> {1,1,1,1, 50,1,50,50}  //z
-            //};
-
             List<List<double>> voertuigMatrix = new List<List<double>>{
-                new List<double> {50,50,70,70, 70,50,70,50}, //x
-                new List<double> {50,50,50,50, 70,70,70,70}, //y
-                new List<double> {50,70,70,50, 70,70,50,50}  //z
+                new List<double> {0,50,0,50, 0,50,0,50}, //x
+                new List<double> {0,0,50,50, 0,0,50,50}, //y
+                new List<double> {0,0,0,0,   50,50,50,50}  //z
             };
+
+            //List<List<double>> voertuigMatrix = new List<List<double>>{
+            //    new List<double> {1,5,1,5   ,1,5,1,5}, //x
+            //    new List<double> {1,1,5,5   ,1,1,5,5 }, //y
+            //    new List<double> {1,1,1,1   ,5,5,5,5}  //z
+            //};
 
             voertuig = new Matrix3D(voertuigMatrix);
 
-            eye = new Vector3D(20, 20, 20);
-            lookAt = new Vector3D(5, 5, 5);
+            eye = new Vector3D(200, 200, 200);
+            lookAt = new Vector3D(0, 0, 0);
             up = new Vector3D(0, 1, 0);
 
             draw();
@@ -54,11 +54,11 @@ namespace lin_eindopdracht
             Matrix3D projectieMatrix = getProjectieMatrix();
 
             Matrix3D temp = new Matrix3D(null);
+            temp.matrix = Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix);
 
             //drawig voertuig
-            //voertuig.matrix.Add(new List<double> { 0,0,0,0,0,0,0,0});
-            voertuig.matrix.Add(new List<double> {1,1,1,1,1,1,1,1});
-            voertuig.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix),voertuig.matrix);
+            voertuig.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
+            voertuig.matrix = Matrix3D.vermenigvuldig(temp.matrix,voertuig.matrix);
             naberekening(voertuig);
 
             //clear canvas
@@ -71,6 +71,7 @@ namespace lin_eindopdracht
 
         public void drawMatrix(List<List<double>> list)
         {
+
 
             PointCollection points = new PointCollection();
 
@@ -93,11 +94,21 @@ namespace lin_eindopdracht
             botColour.Color = Colors.Blue;
 
             PointCollection bottom = new PointCollection();
+            //List<List<double>> voertuigMatrix = new List<List<double>>{
+            //    new List<double> {1,5,1,5   ,1,5,1,5}, //x
+            //    new List<double> {1,1,5,5   ,1,1,5,5 }, //y
+            //    new List<double> {1,1,1,1   ,5,5,5,5}  //z
+            //};
+            bottom.Add(points[2]);
+            bottom.Add(points[3]);
 
-            for(int i = 0; i < 4; i++)
-            {
-                bottom.Add(points[i]);
-            }
+            bottom.Add(points[7]);
+            bottom.Add(points[6]);
+            //bottom.Add(new Point(0, 10));
+            //bottom.Add(new Point(10, 10));
+            //bottom.Add(new Point(10, 20));
+            //bottom.Add(new Point(0, 20));
+
 
             //creating polygon shape for side
             Polygon voertuigPolygonBottom = new Polygon();
@@ -117,8 +128,9 @@ namespace lin_eindopdracht
 
             back.Add(points[0]);
             back.Add(points[1]);
-            back.Add(points[5]);
-            back.Add(points[7]);
+            back.Add(points[3]);
+            back.Add(points[2]);
+            
 
             //creating polygon shape for side
             Polygon voertuigPolygonback = new Polygon();
@@ -137,9 +149,10 @@ namespace lin_eindopdracht
             PointCollection left = new PointCollection();
 
             left.Add(points[0]);
-            left.Add(points[3]);
+            left.Add(points[2]);
             left.Add(points[6]);
-            left.Add(points[7]);
+            left.Add(points[4]);
+
 
             //creating polygon shape for side
             Polygon voertuigPolygonleft = new Polygon();
@@ -158,9 +171,10 @@ namespace lin_eindopdracht
             PointCollection right = new PointCollection();
 
             right.Add(points[1]);
-            right.Add(points[2]);
-            right.Add(points[4]);
+            right.Add(points[3]);
+            right.Add(points[7]);
             right.Add(points[5]);
+
 
             //creating polygon shape for side
             Polygon voertuigPolygonright = new Polygon();
@@ -178,10 +192,11 @@ namespace lin_eindopdracht
             frontColour.Color = Colors.Purple;
             PointCollection front = new PointCollection();
 
-            front.Add(points[2]);
-            front.Add(points[3]);
-            front.Add(points[6]);
             front.Add(points[4]);
+            front.Add(points[5]);
+            front.Add(points[7]);
+            front.Add(points[6]);
+
 
             //creating polygon shape for side
             Polygon voertuigPolygonfront = new Polygon();
@@ -194,25 +209,27 @@ namespace lin_eindopdracht
             canvas.Children.Add(voertuigPolygonfront);
 
 
-            //top
-            SolidColorBrush topColour = new SolidColorBrush();
-            topColour.Color = Colors.Aqua;
-            PointCollection top = new PointCollection();
+           // //top
+           // SolidColorBrush topColour = new SolidColorBrush();
+           // topColour.Color = Colors.Aqua;
+           // PointCollection top = new PointCollection();
 
-            top.Add(points[4]);
-            top.Add(points[6]);
-            top.Add(points[7]);
-            top.Add(points[5]);
+           // top.Add(points[1]);
+           // top.Add(points[2]);
+           // top.Add(points[4]);
+           // top.Add(points[5]);
 
-            //creating polygon shape for side
-            Polygon voertuigPolygontop = new Polygon();
-            voertuigPolygontop.Points = top;
-            voertuigPolygontop.Stroke = Brushes.Black;
-            voertuigPolygontop.StrokeThickness = 1;
 
-            voertuigPolygontop.Fill = topColour;
 
-            canvas.Children.Add(voertuigPolygontop);
+           //// creating polygon shape for side
+           // Polygon voertuigPolygontop = new Polygon();
+           // voertuigPolygontop.Points = top;
+           // voertuigPolygontop.Stroke = Brushes.Black;
+           // voertuigPolygontop.StrokeThickness = 1;
+
+           // voertuigPolygontop.Fill = topColour;
+
+           // canvas.Children.Add(voertuigPolygontop);
         }
 
         public void naberekening(Matrix3D matrix)
@@ -241,16 +258,16 @@ namespace lin_eindopdracht
         private Matrix3D getProjectieMatrix()
         {
             //local variables used
-            double near = 5;
-            double far = 50;
+            double near = 50;
+            double far = 300;
             double fieldOfView = 90;
-            double scale = near * Math.Tan(Matrix3D.ConvertToRadians(fieldOfView) * 0.5);
+            double scale = near * Math.Tan(Matrix3D.ConvertToRadians(fieldOfView) * 0.5f);
 
             List<List<double>> projectieMatrix = new List<List<double>>{
                 new List<double> { scale, 0,0,0 }, //x
                 new List<double> {0, scale,0,0}, //y
-                new List<double> {0,0,(-1 * far) / (far-near), -1},  //z
-                new List<double> {0,0,(-1 * far) * near / (far - near) ,0}
+                new List<double> {0,0,-(far + near) / (far-near), -1},  //z
+                new List<double> {0,0,-(2 * far * near) / (far - near) ,0}
             };
 
             return new Matrix3D(projectieMatrix);
