@@ -186,7 +186,6 @@ namespace lin_eindopdracht
             right.Add(points[7]);
             right.Add(points[5]);
 
-
             //creating polygon shape for side
             Polygon voertuigPolygonright = new Polygon();
             voertuigPolygonright.Points = right;
@@ -197,7 +196,6 @@ namespace lin_eindopdracht
 
             canvas.Children.Add(voertuigPolygonright);
             
-            
             //front
             SolidColorBrush frontColour = new SolidColorBrush();
             frontColour.Color = Colors.Blue;
@@ -207,7 +205,6 @@ namespace lin_eindopdracht
             front.Add(points[5]);
             front.Add(points[7]);
             front.Add(points[6]);
-
 
             //creating polygon shape for side
             Polygon voertuigPolygonfront = new Polygon();
