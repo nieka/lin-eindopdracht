@@ -29,12 +29,18 @@ namespace lin_eindopdracht
             controller = new controller(canvas);
 
             this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
+            CompositionTarget.Rendering += gameLoop;
         }
 
         private void OnButtonKeyDown(object sender, KeyEventArgs e)
         {
             Key k = e.Key;
             controller.move(k);
+        }
+
+        private void gameLoop(object sender, EventArgs e)
+        {
+            controller.draw();
         }
     }
 }

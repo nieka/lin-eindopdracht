@@ -109,8 +109,7 @@ namespace lin_eindopdracht
                     //E
                     break;
             }
-
-            draw();
+           
         }
        
 
