@@ -70,11 +70,17 @@ namespace lin_eindopdracht
             //draw monster
             Matrix3D tempMonsterMatrix = new Matrix3D(monster.matrix.matrix);
             tempMonsterMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
-            tempMonsterMatrix.matrix = Matrix3D.vermenigvuldig(Matrix3D.vermenigvuldig(projectieMatrix.matrix, cameraMatrix.matrix), tempMonsterMatrix.matrix);
+            tempMonsterMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempMonsterMatrix.matrix);
             naberekening(tempMonsterMatrix);
             drawMatrix(tempMonsterMatrix.matrix);
             monster.matrix.matrix.RemoveAt(monster.matrix.matrix.Count - 1);
-            
+
+            //draw help schiet lijn
+            Matrix3D tempLijnMatrix = voertuig.getShootLine();
+            tempLijnMatrix.matrix.Add(new List<double> { 1, 1 });
+            tempLijnMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempLijnMatrix.matrix);
+            naberekening(tempLijnMatrix);
+            drawLine(tempLijnMatrix.matrix);
 
         }
 
@@ -101,7 +107,7 @@ namespace lin_eindopdracht
                 Console.WriteLine(tempVoertuigMatrix.matrix[3][i]);
             }
         }
-
+    
         public void move(Key k)
         {
             int transleerValue = 5;
@@ -134,7 +140,19 @@ namespace lin_eindopdracht
            
         }
        
+        public void drawLine(List<List<double>> list)
+        {
+            Line line = new Line();
+            line.Stroke = Brushes.LightSteelBlue;
 
+            line.X1 = list[0][0];
+            line.X2 = list[0][1];
+            line.Y1 = list[1][0];
+            line.Y2 = list[1][1];
+
+            line.StrokeThickness = 2;
+            canvas.Children.Add(line);
+        }
 
         public void drawMatrix(List<List<double>> list)
         {
