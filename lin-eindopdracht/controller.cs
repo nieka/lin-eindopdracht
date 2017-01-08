@@ -103,10 +103,10 @@ namespace lin_eindopdracht
                     voertuig.matrix.transleer(transleerValue, 0, 0);
                     break;
                 case Key.Q:
-                    voertuig.matrix.rotatedSelf(5,RotateType.XAS);
+                    voertuig.matrix.rotatedSelfv2(5,RotateType.XAS);
                     break;
                 case Key.E:
-                    voertuig.matrix.rotatedSelf(-5, RotateType.XAS);
+                    voertuig.matrix.rotatedSelfv2(-5, RotateType.XAS);
                     break;
             }
            
