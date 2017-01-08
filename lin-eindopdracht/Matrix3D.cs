@@ -127,7 +127,7 @@ namespace lin_eindopdracht
             Translatie.Add(new List<double>() { 1,0,0 , -x });
             Translatie.Add(new List<double>() { 0, 1, 0, -y });
             Translatie.Add(new List<double>() { 0,0,1,-z });
-            Translatie.Add(new List<double>() { 0,0,0,0});
+            Translatie.Add(new List<double>() { 0,0,0,1});
 
             List<List<double>> R1_matrix = new List<List<double>>();
             R1_matrix.Add(new List<double>() { Math.Cos(t1), 0, Math.Sin(t1),0 });
@@ -168,7 +168,7 @@ namespace lin_eindopdracht
             Translatie.Add(new List<double>() { 1, 0, 0, x });
             Translatie.Add(new List<double>() { 0, 1, 0, y });
             Translatie.Add(new List<double>() { 0, 0, 1, z });
-            Translatie.Add(new List<double>() { 0, 0, 0, 0 });
+            Translatie.Add(new List<double>() { 0, 0, 0, 1 });
             RotateMatrix.matrix = Matrix3D.vermenigvuldig(Translatie,RotateMatrix.matrix);
 
             matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
