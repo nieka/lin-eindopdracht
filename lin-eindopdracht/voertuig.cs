@@ -12,9 +12,15 @@ namespace lin_eindopdracht
 
         public voertuig (float x, float y, float z)
         {
+            //List<List<double>> voertuigMatrix = new List<List<double>>{
+            //    new List<double> {0,50,0,50, 0,50,0,50}, //x
+            //    new List<double> {0,0,50,50, 0,0,50,50}, //y
+            //    new List<double> {0,0,0,0,   50,50,50,50}  //z
+            //};
+
             List<List<double>> voertuigMatrix = new List<List<double>>{
                 new List<double> {0,50,0,50, 0,50,0,50}, //x
-                new List<double> {0,0,50,50, 0,0,50,50}, //y
+                new List<double> {250,250,300,300, 250,250,300,300}, //y
                 new List<double> {0,0,0,0,   50,50,50,50}  //z
             };
 

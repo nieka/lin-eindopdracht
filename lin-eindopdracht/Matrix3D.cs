@@ -59,6 +59,59 @@ namespace lin_eindopdracht
             matrix = Matrix3D.vermenigvuldig(R_matrix, matrix);
         }
 
+        public void rotatedSelf(double graden, RotateType type)
+        {
+            //List<List<double>> tempmatrix = matrix;
+            graden = ConvertToRadians(graden);
+
+            float x = (float)matrix[0][0];
+            float y = (float)matrix[0][1];
+            float z = (float)matrix[0][2];
+            double t1 = Math.Atan2(matrix[0][2], matrix[0][1]);
+            double t2 = Math.Atan2(matrix[0][1], (Math.Sqrt(matrix[0][0] + matrix[0][2])));
+
+            transleer(-x, -y, -z);
+
+            //rotated(t, RotateType.YAS);
+            //rotated(t2, RotateType.ZAS);
+            //rotated(graden, RotateType.XAS);
+            //rotated(t2, RotateType.ZAS);
+            //rotated(t,RotateType.YAS);
+            
+            List<List<double>> R1_matrix = new List<List<double>>();
+            R1_matrix.Add(new List<double>() { Math.Cos(t1), 0, -1 * Math.Sin(t1) });
+            R1_matrix.Add(new List<double>() { 0, 1, 0 });
+            R1_matrix.Add(new List<double>() { Math.Sin(t1), 0, Math.Cos(t1) });
+            matrix = Matrix3D.vermenigvuldig(R1_matrix, matrix);
+
+            List<List<double>> R2_matrix = new List<List<double>>();
+            R2_matrix.Add(new List<double>() { Math.Cos(t2), -1 * Math.Sin(t2), 0 });
+            R2_matrix.Add(new List<double>() { Math.Sin(t2), Math.Cos(t2), 0 });
+            R2_matrix.Add(new List<double>() { 0, 0, 1 });
+            matrix = Matrix3D.vermenigvuldig(R2_matrix, matrix);
+
+            List<List<double>> R3_matrix = new List<List<double>>();
+            R3_matrix.Add(new List<double>() { 1, 0, 0 });
+            R3_matrix.Add(new List<double>() { 0, Math.Cos(graden), -1 * Math.Sin(graden) });
+            R3_matrix.Add(new List<double>() { 0, Math.Sin(graden), Math.Cos(graden) });
+            matrix = Matrix3D.vermenigvuldig(R3_matrix, matrix);
+
+            List<List<double>> R4_matrix = new List<List<double>>();
+            R4_matrix.Add(new List<double>() { 1, 0, 0 });
+            R4_matrix.Add(new List<double>() { 0, Math.Cos(t2), -1 * Math.Sin(t2) });
+            R4_matrix.Add(new List<double>() { 0, Math.Sin(t2), Math.Cos(t2) });
+            matrix = Matrix3D.vermenigvuldig(R4_matrix, matrix);
+
+            List<List<double>> R5_matrix = new List<List<double>>();
+            R5_matrix.Add(new List<double>() { Math.Cos(t1), 0, -1 * Math.Sin(t1) });
+            R5_matrix.Add(new List<double>() { 0, 1, 0 });
+            R5_matrix.Add(new List<double>() { Math.Sin(t1), 0, Math.Cos(t1) });
+            matrix = Matrix3D.vermenigvuldig(R5_matrix, matrix);
+            
+            //matrix = tempmatrix;
+            transleer(x,y,z);
+        }
+
         public void transleer(float x, float y,float z)
         {
             //maak schaal matrix aan

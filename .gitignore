@@ -275,3 +275,4 @@ __pycache__/
 # tools/
 *.suo
 lin-eindopdracht/bin/Debug/lin-eindopdracht.exe
+*.cache
