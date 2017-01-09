@@ -28,6 +28,14 @@ namespace lin_eindopdracht
             float z = vector1.z - vector2.z;
             return new Vector3D(x, y, z);
         }
+   
+        public static Vector3D add(Vector3D vector1, Vector3D vector2)
+        {
+            float x = vector1.x + vector2.x;
+            float y = vector2.y + vector2.y;
+            float z = vector1.z + vector2.z;
+            return new Vector3D(x, y, z);
+        }
 
         public static Vector3D multiply(Vector3D vector1, Vector3D vector2)
         {

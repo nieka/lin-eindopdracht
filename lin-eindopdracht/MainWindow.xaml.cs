@@ -40,7 +40,7 @@ namespace lin_eindopdracht
 
         private void gameLoop(object sender, EventArgs e)
         {
-            controller.draw();
+            controller.update();
         }
     }
 }
