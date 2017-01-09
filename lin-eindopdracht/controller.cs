@@ -18,6 +18,7 @@ namespace lin_eindopdracht
         //entiteiten
         private voertuig voertuig;
         private Monster monster;
+        private List<Kogel> kogels;
 
         //vairable for drawing 
         private Vector3D eye;
@@ -30,6 +31,8 @@ namespace lin_eindopdracht
         {
             this.canvas = canvas;
             screenSize = canvas.Width;
+
+            kogels = new List<Kogel>();
 
             voertuig = new voertuig(0, 0,0);
             monster = new Monster(-200, -200, -200, canvas.Width, canvas.Height);
@@ -44,6 +47,16 @@ namespace lin_eindopdracht
         public void update()
         {
             monster.grow();
+            //check if the bullets need to be removed
+            for(int i=0; i< kogels.Count; i++)
+            {
+                Kogel kogel = kogels[i];
+                if(kogel.liveSpan == 100)
+                {
+                    //remove bullet
+                    kogels.Remove(kogel);
+                }
+            }
             draw();
         }
 
@@ -80,7 +93,17 @@ namespace lin_eindopdracht
             tempLijnMatrix.matrix.Add(new List<double> { 1, 1 });
             tempLijnMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempLijnMatrix.matrix);
             naberekening(tempLijnMatrix);
-            drawLine(tempLijnMatrix.matrix);
+            drawLine(tempLijnMatrix.matrix, Brushes.LightSteelBlue);
+
+            //draw kogels
+            foreach (Kogel kogel in kogels)
+            {
+                Matrix3D tempKogelMatrix = kogel.getKogelMatrix();
+                tempKogelMatrix.matrix.Add(new List<double> { 1, 1 });
+                tempKogelMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempKogelMatrix.matrix);
+                naberekening(tempKogelMatrix);
+                drawLine(tempKogelMatrix.matrix, Brushes.Red);
+            }
 
         }
 
@@ -136,14 +159,17 @@ namespace lin_eindopdracht
                 case Key.E:
                     //E
                     break;
+                case Key.Space:
+                    kogels.Add(new Kogel(voertuig.getRichtingsVector(), new Vector3D((float)voertuig.matrix.matrix[0][1], (float)voertuig.matrix.matrix[1][1], (float)voertuig.matrix.matrix[2][1])));
+                    break;
             }
            
         }
        
-        public void drawLine(List<List<double>> list)
+        public void drawLine(List<List<double>> list,Brush brush)
         {
             Line line = new Line();
-            line.Stroke = Brushes.LightSteelBlue;
+            line.Stroke = brush;
 
             line.X1 = list[0][0];
             line.X2 = list[0][1];
@@ -172,6 +198,8 @@ namespace lin_eindopdracht
             }
 
 
+            
+
             //bottom
             SolidColorBrush botColour = new SolidColorBrush();
             botColour.Color = Colors.Blue;
@@ -192,8 +220,8 @@ namespace lin_eindopdracht
             voertuigPolygonBottom.Fill = botColour;
 
             canvas.Children.Add(voertuigPolygonBottom);
-            
-            
+
+
             //right
             SolidColorBrush rightColour = new SolidColorBrush();
             rightColour.Color = Colors.Blue;
@@ -213,7 +241,7 @@ namespace lin_eindopdracht
             voertuigPolygonright.Fill = rightColour;
 
             canvas.Children.Add(voertuigPolygonright);
-            
+
             //front
             SolidColorBrush frontColour = new SolidColorBrush();
             frontColour.Color = Colors.Blue;
@@ -289,7 +317,7 @@ namespace lin_eindopdracht
             top.Add(points[4]);
             top.Add(points[5]);
 
-           // creating polygon shape for side
+            // creating polygon shape for side
             Polygon voertuigPolygontop = new Polygon();
             voertuigPolygontop.Points = top;
             voertuigPolygontop.Stroke = Brushes.Black;
@@ -298,7 +326,24 @@ namespace lin_eindopdracht
             voertuigPolygontop.Fill = topColour;
 
             canvas.Children.Add(voertuigPolygontop);
-            
+            //bottom
+            SolidColorBrush testColour = new SolidColorBrush();
+            testColour.Color = Colors.Red;
+
+            PointCollection test = new PointCollection();
+            test.Add(new Point(list[0][1], list[1][1]));
+            test.Add(new Point(list[0][0], list[1][0]));
+
+
+            //creating polygon shape for side
+            Polygon testBottom = new Polygon();
+            testBottom.Points = test;
+            testBottom.Stroke = Brushes.Red;
+            testBottom.StrokeThickness = 1;
+
+            testBottom.Fill = testColour;
+
+            canvas.Children.Add(testBottom);
         }
 
         public void naberekening(Matrix3D matrix)
@@ -311,7 +356,10 @@ namespace lin_eindopdracht
                 double z = matrix.matrix[2][i];
                 double w = matrix.matrix[3][i];
                 
-               
+               if(w == 0)
+                {
+                    w = 1;
+                }
                 x = screenSize / 2 + (x + 1) / w * screenSize * 0.5;
                 y = screenSize / 2 + (y + 1) / w * screenSize * 0.5;
                 z *= -1;
