@@ -102,7 +102,7 @@ namespace lin_eindopdracht
 
             RotateMatrix.transleer(x, y, z);
 
-            matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
+            AddRekenRegel(matrix);
             matrix = Matrix3D.vermenigvuldig(RotateMatrix.matrix,matrix);
             matrix.RemoveAt(matrix.Count - 1);
         }
@@ -112,7 +112,7 @@ namespace lin_eindopdracht
             //maak schaal matrix aan
             List<List<double>> T_matrix = new List<List<double>>();
             List<List<double>> M_matrix = matrix;
-            for (int i = 0; i <= M_matrix.Count; i++)
+            for (int i = 0; i < 4; i++)
             {
                 T_matrix.Add(new List<double>(M_matrix[0].Count));
             }
@@ -289,6 +289,16 @@ namespace lin_eindopdracht
             }
 
             return matrix;
+        }
+
+        public static void AddRekenRegel(List<List<double>> matrix)
+        {
+            List<double> rekenlist = new List<double>();
+            for (int i = 0; i < matrix[0].Count; i++)
+            {
+                rekenlist.Add(1);
+            }
+            matrix.Add(rekenlist);
         }
     }
 }

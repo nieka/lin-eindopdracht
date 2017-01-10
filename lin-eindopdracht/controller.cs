@@ -72,7 +72,7 @@ namespace lin_eindopdracht
 
             //draw voertuig
             Matrix3D tempVoertuigMatrix = new Matrix3D(voertuig.matrix.matrix);
-            tempVoertuigMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
+            Matrix3D.AddRekenRegel(tempVoertuigMatrix.matrix);
             tempVoertuigMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempVoertuigMatrix.matrix);
             naberekening(tempVoertuigMatrix);
             drawMatrix(tempVoertuigMatrix.matrix);
@@ -80,7 +80,7 @@ namespace lin_eindopdracht
 
             //draw monster
             Matrix3D tempMonsterMatrix = new Matrix3D(monster.matrix.matrix);
-            tempMonsterMatrix.matrix.Add(new List<double> { 1, 1, 1, 1, 1, 1, 1, 1 });
+            Matrix3D.AddRekenRegel(tempMonsterMatrix.matrix);
             tempMonsterMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempMonsterMatrix.matrix);
             naberekening(tempMonsterMatrix);
             drawMatrix(tempMonsterMatrix.matrix);
@@ -88,7 +88,7 @@ namespace lin_eindopdracht
 
             //draw help schiet lijn
             Matrix3D tempLijnMatrix = voertuig.getShootLine();
-            tempLijnMatrix.matrix.Add(new List<double> { 1, 1 });
+            Matrix3D.AddRekenRegel(tempLijnMatrix.matrix);
             tempLijnMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempLijnMatrix.matrix);
             naberekening(tempLijnMatrix);
             drawLine(tempLijnMatrix.matrix, Brushes.LightSteelBlue);
@@ -97,7 +97,8 @@ namespace lin_eindopdracht
             foreach (Kogel kogel in kogels)
             {
                 Matrix3D tempKogelMatrix = kogel.getKogelMatrix();
-                tempKogelMatrix.matrix.Add(new List<double> { 1, 1 });
+
+                Matrix3D.AddRekenRegel(tempKogelMatrix.matrix);
                 tempKogelMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempKogelMatrix.matrix);
                 naberekening(tempKogelMatrix);
                 drawLine(tempKogelMatrix.matrix, Brushes.Red);
