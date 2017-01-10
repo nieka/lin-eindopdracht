@@ -119,8 +119,9 @@ namespace lin_eindopdracht
             float x = (float)matrix[0][0];
             float y = (float)matrix[0][1];
             float z = (float)matrix[0][2];
-            double t1 = Math.Atan2(z, x);
-            double t2 = Math.Atan2(y, (Math.Sqrt(x * x + y * y)));
+            Console.WriteLine("x= " + x + " y= " + y + " z= " + z);
+            double t1 = Math.Round(Math.Atan2(z, x),7);
+            double t2 = Math.Round(Math.Atan2(y, (Math.Sqrt(x * x + z * z))),7);
             Matrix3D RotateMatrix = new Matrix3D(null);
             //translatie matrix
             List<List<double>> Translatie = new List<List<double>>();
@@ -137,30 +138,30 @@ namespace lin_eindopdracht
               RotateMatrix.matrix = Matrix3D.vermenigvuldig(R1_matrix,Translatie);
 
             List<List<double>> R2_matrix = new List<List<double>>();
-            R2_matrix.Add(new List<double>() { Math.Cos(t2), Math.Sin(t2), 0, 0 });
-            R2_matrix.Add(new List<double>() { -1 * Math.Sin(t2), Math.Cos(t2), 0,0 });
+            R2_matrix.Add(new List<double>() { Math.Round(Math.Cos(t2),7), Math.Round(Math.Sin(t2),7), 0, 0 });
+            R2_matrix.Add(new List<double>() { -1 * Math.Round(Math.Sin(t2),7), Math.Round(Math.Cos(t2),7), 0,0 });
             R2_matrix.Add(new List<double>() { 0, 0, 1 ,0});
             R2_matrix.Add(new List<double>() { 0, 0, 0 ,1 });
              RotateMatrix.matrix = Matrix3D.vermenigvuldig(R2_matrix, RotateMatrix.matrix);
 
             List<List<double>> R3_matrix = new List<List<double>>();
             R3_matrix.Add(new List<double>() { 1, 0, 0 ,0});
-            R3_matrix.Add(new List<double>() { 0, Math.Cos(graden), -1 * Math.Sin(graden),0 });
-            R3_matrix.Add(new List<double>() { 0, Math.Sin(graden), Math.Cos(graden),0 });
+            R3_matrix.Add(new List<double>() { 0, Math.Round(Math.Cos(graden),7), -1 * Math.Round(Math.Sin(graden),7),0 });
+            R3_matrix.Add(new List<double>() { 0, Math.Round(Math.Sin(graden),7), Math.Round(Math.Cos(graden),7),0 });
             R3_matrix.Add(new List<double>() { 0, 0, 0, 1 });
             RotateMatrix.matrix = Matrix3D.vermenigvuldig(R3_matrix,RotateMatrix.matrix);
 
             List<List<double>> R4_matrix = new List<List<double>>();
-            R4_matrix.Add(new List<double>() { Math.Cos(t2), -1 * Math.Sin(t2), 0,0 });
-            R4_matrix.Add(new List<double>() { Math.Sin(t2), Math.Cos(t2), 0,0 });
+            R4_matrix.Add(new List<double>() { Math.Round(Math.Cos(t2),7), -1 * Math.Round(Math.Sin(t2),7), 0,0 });
+            R4_matrix.Add(new List<double>() { Math.Round(Math.Sin(t2),7), Math.Round(Math.Cos(t2),7), 0,0 });
             R4_matrix.Add(new List<double>() { 0, 0, 1, 0});
             R4_matrix.Add(new List<double>() { 0, 0, 0, 1});
             RotateMatrix.matrix = Matrix3D.vermenigvuldig(R4_matrix,RotateMatrix.matrix);
 
             List<List<double>> R5_matrix = new List<List<double>>();
-            R5_matrix.Add(new List<double>() { Math.Cos(t1), 0, -1 * Math.Sin(t1),0 });
+            R5_matrix.Add(new List<double>() { Math.Round(Math.Cos(t1),7), 0, -1 * Math.Round(Math.Sin(t1),7),0 });
             R5_matrix.Add(new List<double>() { 0, 1, 0,0 });
-            R5_matrix.Add(new List<double>() { Math.Sin(t1), 0, Math.Cos(t1),0 });
+            R5_matrix.Add(new List<double>() { Math.Round(Math.Sin(t1),7), 0, Math.Round(Math.Cos(t1),7),0 });
             R5_matrix.Add(new List<double>() { 0, 0, 0, 1 });
             RotateMatrix.matrix = Matrix3D.vermenigvuldig(R5_matrix, RotateMatrix.matrix);
 
