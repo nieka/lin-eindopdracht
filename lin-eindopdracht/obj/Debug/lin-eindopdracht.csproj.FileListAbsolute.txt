@@ -27,3 +27,6 @@ C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin
 C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.csproj.GenerateResource.Cache
 C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.exe
 C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.pdb
+D:\miche\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe.config
+D:\miche\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.exe
+D:\miche\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.pdb

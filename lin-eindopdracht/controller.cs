@@ -133,31 +133,30 @@ namespace lin_eindopdracht
     
         public void move(Key k)
         {
-            int transleerValue = 5;
+            int moveValue = 5;
             switch (k)
             {
                 case Key.Up:
                     //move up
-                    voertuig.matrix.transleer(0, -transleerValue, 0);
+                    voertuig.matrix.transleer(0, -moveValue, 0);
                     break;
                 case Key.Down:
                     //move back
-                    voertuig.matrix.transleer(0, transleerValue, 0);
+                    voertuig.matrix.transleer(0, moveValue, 0);
                     break;
                 case Key.Left:
                     //move left
-                    voertuig.matrix.transleer(-transleerValue, 0, 0);
+                    voertuig.matrix.transleer(-moveValue, 0, 0);
                     break;
                 case Key.Right:
                     //move right
-                    voertuig.matrix.transleer(transleerValue, 0, 0);
+                    voertuig.matrix.transleer(moveValue, 0, 0);
                     break;
                 case Key.Q:
-                    //Q
-                    
+                    voertuig.matrix.rotatedSelf(moveValue, RotateType.XAS);
                     break;
                 case Key.E:
-                    //E
+                    voertuig.matrix.rotatedSelf(-moveValue, RotateType.XAS);
                     break;
                 case Key.Space:
                     kogels.Add(new Kogel(voertuig.getRichtingsVector(), new Vector3D((float)voertuig.matrix.matrix[0][1], (float)voertuig.matrix.matrix[1][1], (float)voertuig.matrix.matrix[2][1])));
