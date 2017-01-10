@@ -116,9 +116,9 @@ namespace lin_eindopdracht
             //List<List<double>> tempmatrix = matrix;
             graden = ConvertToRadians(graden);
             
-            float x = (float)matrix[0][0];
-            float y = (float)matrix[0][1];
-            float z = (float)matrix[0][2];
+            float x = (float) Math.Round(matrix[0][0],7);
+            float y = (float) Math.Round(matrix[0][1],7);
+            float z = (float) Math.Round(matrix[0][2],7);
             Console.WriteLine("x= " + x + " y= " + y + " z= " + z);
             double t1 = Math.Round(Math.Atan2(z, x),7);
             double t2 = Math.Round(Math.Atan2(y, (Math.Sqrt(x * x + z * z))),7);
