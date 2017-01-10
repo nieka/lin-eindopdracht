@@ -110,30 +110,30 @@ namespace lin_eindopdracht
     
         public void move(Key k)
         {
-            int transleerValue = 5;
+            int moveValue = 5;
             switch (k)
             {
                 case Key.Up:
                     //move up
-                    voertuig.matrix.transleer(0, -transleerValue, 0);
+                    voertuig.matrix.transleer(0, -moveValue, 0);
                     break;
                 case Key.Down:
                     //move back
-                    voertuig.matrix.transleer(0, transleerValue, 0);
+                    voertuig.matrix.transleer(0, moveValue, 0);
                     break;
                 case Key.Left:
                     //move left
-                    voertuig.matrix.transleer(-transleerValue, 0, 0);
+                    voertuig.matrix.transleer(-moveValue, 0, 0);
                     break;
                 case Key.Right:
                     //move right
-                    voertuig.matrix.transleer(transleerValue, 0, 0);
+                    voertuig.matrix.transleer(moveValue, 0, 0);
                     break;
                 case Key.Q:
-                    voertuig.matrix.rotatedSelfv2(5,RotateType.XAS);
+                    voertuig.matrix.rotatedSelf(moveValue, RotateType.XAS);
                     break;
                 case Key.E:
-                    voertuig.matrix.rotatedSelfv2(-5, RotateType.XAS);
+                    voertuig.matrix.rotatedSelf(-moveValue, RotateType.XAS);
                     break;
             }
            
