@@ -31,7 +31,7 @@ namespace lin_eindopdracht
         public List<List<double>> getRotateMatrix(double graden, RotateType type)
         {
             //rotate code voor een 2d matrix
-            graden = Math.Round(ConvertToRadians(graden),7);
+            graden = ConvertToRadians(graden);
 
             List<List<double>> R_matrix = new List<List<double>>();
 
@@ -112,9 +112,9 @@ namespace lin_eindopdracht
             //maak schaal matrix aan
             List<List<double>> T_matrix = new List<List<double>>();
             List<List<double>> M_matrix = matrix;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i <= M_matrix.Count; i++)
             {
-                T_matrix.Add(new List<double>(4));
+                T_matrix.Add(new List<double>(M_matrix[0].Count));
             }
             for (int i = 0; i < T_matrix.Count; i++)
             {
@@ -155,7 +155,7 @@ namespace lin_eindopdracht
         //static methodes
         public static double ConvertToRadians(double angle)
         {
-            return (Math.PI / 180) * angle;
+            return Math.Round((Math.PI / 180) * angle,DECMAILROUNDING);
         }
 
         public static List<List<double>> inverse(List<List<double>> matrix)

@@ -10,7 +10,7 @@ namespace lin_eindopdracht
     {
         private Vector3D richtingsVector;
         private Vector3D locatie;
-        private float kogelLength = 5;
+        private const float KOGELLENGTH = 5;
         public int liveSpan { get; private set; }
 
         public Kogel(Vector3D richtingsVector, Vector3D startPunt)
@@ -21,8 +21,8 @@ namespace lin_eindopdracht
         }
 
         public Matrix3D getKogelMatrix()
-        {liveSpan++;
-            Vector3D endPoint = Vector3D.add(locatie, Vector3D.multiply(new Vector3D(kogelLength, kogelLength, kogelLength), richtingsVector));
+        {
+            Vector3D endPoint = Vector3D.add(locatie, Vector3D.multiply(new Vector3D(KOGELLENGTH, KOGELLENGTH, KOGELLENGTH), richtingsVector));
 
             List<List<double>> kogelMatrix = new List<List<double>>{
                 new List<double> {locatie.x, endPoint.x}, //x
@@ -31,7 +31,7 @@ namespace lin_eindopdracht
             };
 
             //add one to the livespan of the bullet
-            
+            liveSpan++;
             //the endpoint is now the new location of the bullet
             locatie = endPoint;
 

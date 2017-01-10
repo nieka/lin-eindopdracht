@@ -40,8 +40,6 @@ namespace lin_eindopdracht
             eye = new Vector3D(200, 200, 200);
             lookAt = new Vector3D(0, 0, 0);
             up = new Vector3D(0, 1, 0);
-
-            draw();
         }
 
         public void update()
@@ -194,10 +192,7 @@ namespace lin_eindopdracht
 
                 //if w is smaller then 0 we don't need to draw it
                 points.Add(new Point(x, y));
-            }
-
-
-            
+            }            
 
             //bottom
             SolidColorBrush botColour = new SolidColorBrush();
@@ -208,7 +203,6 @@ namespace lin_eindopdracht
             bottom.Add(points[3]);
             bottom.Add(points[7]);
             bottom.Add(points[6]);
-
 
             //creating polygon shape for side
             Polygon voertuigPolygonBottom = new Polygon();

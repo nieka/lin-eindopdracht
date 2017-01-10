@@ -17,7 +17,7 @@ namespace UnitTestProject
             matrixLijst1.Add(new List<double> { 7, 8 });
 
             Matrix3D matrix = new Matrix3D(matrixLijst1);
-            matrix.rotated(90, RotateType.XAS);
+          //  matrix.rotated(90, RotateType.XAS);
 
             List<List<double>> uitkomst = new List<List<double>>();
             uitkomst.Add(new List<double> { 1, 2 });
@@ -36,7 +36,7 @@ namespace UnitTestProject
             matrixLijst1.Add(new List<double> { 7, 8 });
 
             Matrix3D matrix = new Matrix3D(matrixLijst1);
-            matrix.rotated(90, RotateType.YAS);
+          //  matrix.rotated(90, RotateType.YAS);
 
             List<List<double>> uitkomst = new List<List<double>>();
             uitkomst.Add(new List<double> { -7, -8 });
@@ -54,7 +54,7 @@ namespace UnitTestProject
             matrixLijst1.Add(new List<double> { 7, 8 });
 
             Matrix3D matrix = new Matrix3D(matrixLijst1);
-            matrix.rotated(90, RotateType.ZAS);
+           // matrix.rotated(90, RotateType.ZAS);
 
             List<List<double>> uitkomst = new List<List<double>>();
             uitkomst.Add(new List<double> { -4, -5 });
