@@ -35,7 +35,7 @@ namespace lin_eindopdracht
             kogels = new List<Kogel>();
 
             voertuig = new voertuig(0, 0,0);
-            monster = new Monster(-200, -200, -200, canvas.Width, canvas.Height);
+            monster = new Monster(0, -400, -200, canvas.Width, canvas.Height);
 
             eye = new Vector3D(200, 200, 200);
             lookAt = new Vector3D(0, 0, 0);
