@@ -10,14 +10,10 @@ namespace lin_eindopdracht
     {
         public Matrix3D matrix { get; private set; }
         private float lijnLength = 300;
+        public Vector3D steunvector { get; private set; }
         public voertuig (float x, float y, float z)
         {
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {0,50,0,50, 0,50,0,50}, //x
-            //    new List<double> {0,0,50,50, 0,0,50,50}, //y
-            //    new List<double> {0,0,0,0,   50,50,50,50}  //z
-            //};
-
+           
             List<List<double>> voertuigMatrix = new List<List<double>>{
                 new List<double> {0,50,0,50, 0,50,0,50}, //x
                 new List<double> {250,250,300,300, 250,250,300,300}, //y
@@ -27,12 +23,13 @@ namespace lin_eindopdracht
             matrix = new Matrix3D(voertuigMatrix);
 
             matrix.transleer(x, y, z);
+            
         }
 
         public Matrix3D getShootLine()
-        { 
-            Vector3D steunvector = new Vector3D((float)matrix.matrix[0][1], (float)matrix.matrix[1][1], (float)matrix.matrix[2][1]);
-            Vector3D SecondstartPunt = new Vector3D((float)matrix.matrix[0][0], (float)matrix.matrix[1][0], (float)matrix.matrix[2][0]);
+        {
+            steunvector = new Vector3D((float)matrix.matrix[0][2], (float)matrix.matrix[1][2], (float)matrix.matrix[2][2]);
+            Vector3D SecondstartPunt = new Vector3D((float)matrix.matrix[0][3], (float)matrix.matrix[1][3], (float)matrix.matrix[2][3]);
 
             Vector3D Richtingsvector = getRichtingsVector();
 
@@ -48,8 +45,8 @@ namespace lin_eindopdracht
 
         public Vector3D getRichtingsVector()
         {
-            Vector3D steunvector = new Vector3D((float)matrix.matrix[0][1], (float)matrix.matrix[1][1], (float)matrix.matrix[2][1]);
-            Vector3D SecondstartPunt = new Vector3D((float)matrix.matrix[0][0], (float)matrix.matrix[1][0], (float)matrix.matrix[2][0]);
+            steunvector = new Vector3D((float)matrix.matrix[0][2], (float)matrix.matrix[1][2], (float)matrix.matrix[2][2]);
+            Vector3D SecondstartPunt = new Vector3D((float)matrix.matrix[0][3], (float)matrix.matrix[1][3], (float)matrix.matrix[2][3]);
 
             Vector3D Richtingsvector = Vector3D.subtract(SecondstartPunt, steunvector);
             float distance = Vector3D.distance(steunvector, SecondstartPunt);

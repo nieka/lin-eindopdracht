@@ -57,7 +57,6 @@
     <Compile Include="MatrixSchaalTests.cs" />
     <Compile Include="TestMethodes.cs" />
     <Compile Include="TransleerTests.cs" />
-    <Compile Include="RotatieTest.cs" />
     <Compile Include="InporductTests.cs" />
     <Compile Include="UitproductTest.cs" />
     <Compile Include="NormalizeTests.cs" />

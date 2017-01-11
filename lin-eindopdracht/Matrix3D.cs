@@ -195,7 +195,6 @@ namespace lin_eindopdracht
             identiteitsmatrix[0] = identiteitsmatrix[highstrow];
             identiteitsmatrix[highstrow] = tempRow;
 
-
             //Per colum zetten we de identiteit matrix naar de normale matrix
             for (int i=0; i<matrix[0].Count; i++)
             {

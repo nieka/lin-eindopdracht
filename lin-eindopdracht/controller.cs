@@ -158,7 +158,7 @@ namespace lin_eindopdracht
                     voertuig.matrix.rotatedSelf(-moveValue, RotateType.XAS);
                     break;
                 case Key.Space:
-                    kogels.Add(new Kogel(voertuig.getRichtingsVector(), new Vector3D((float)voertuig.matrix.matrix[0][1], (float)voertuig.matrix.matrix[1][1], (float)voertuig.matrix.matrix[2][1])));
+                    kogels.Add(new Kogel(voertuig.getRichtingsVector(),voertuig.steunvector));
                     break;
             }
            
@@ -197,7 +197,7 @@ namespace lin_eindopdracht
 
             //bottom
             SolidColorBrush botColour = new SolidColorBrush();
-            botColour.Color = Colors.Blue;
+            botColour.Color = Colors.Red;
 
             PointCollection bottom = new PointCollection();
             bottom.Add(points[2]);
@@ -238,7 +238,7 @@ namespace lin_eindopdracht
 
             //front
             SolidColorBrush frontColour = new SolidColorBrush();
-            frontColour.Color = Colors.Blue;
+            frontColour.Color = Colors.Yellow;
             PointCollection front = new PointCollection();
 
             front.Add(points[4]);
@@ -259,7 +259,7 @@ namespace lin_eindopdracht
 
             //left
             SolidColorBrush leftColour = new SolidColorBrush();
-            leftColour.Color = Colors.Blue;
+            leftColour.Color = Colors.Green;
             PointCollection left = new PointCollection();
 
             left.Add(points[0]);
@@ -281,7 +281,7 @@ namespace lin_eindopdracht
 
             //back
             SolidColorBrush backColour = new SolidColorBrush();
-            backColour.Color = Colors.Blue;
+            backColour.Color = Colors.Purple;
             PointCollection back = new PointCollection();
 
             back.Add(points[0]);
@@ -300,10 +300,9 @@ namespace lin_eindopdracht
 
             canvas.Children.Add(voertuigPolygonback);
 
-
-            // //top
+            //top
             SolidColorBrush topColour = new SolidColorBrush();
-            topColour.Color = Colors.Blue;
+            topColour.Color = Colors.Black;
             PointCollection top = new PointCollection();
 
             top.Add(points[1]);
@@ -320,24 +319,6 @@ namespace lin_eindopdracht
             voertuigPolygontop.Fill = topColour;
 
             canvas.Children.Add(voertuigPolygontop);
-            //bottom
-            SolidColorBrush testColour = new SolidColorBrush();
-            testColour.Color = Colors.Red;
-
-            PointCollection test = new PointCollection();
-            test.Add(new Point(list[0][1], list[1][1]));
-            test.Add(new Point(list[0][0], list[1][0]));
-
-
-            //creating polygon shape for side
-            Polygon testBottom = new Polygon();
-            testBottom.Points = test;
-            testBottom.Stroke = Brushes.Red;
-            testBottom.StrokeThickness = 1;
-
-            testBottom.Fill = testColour;
-
-            canvas.Children.Add(testBottom);
         }
 
         public void naberekening(Matrix3D matrix)
@@ -363,8 +344,7 @@ namespace lin_eindopdracht
                 matrix.matrix[1][i] = y;
                 matrix.matrix[2][i] = z;
             }
-        }
-        
+        }        
 
         private Matrix3D getProjectieMatrix()
         {
@@ -382,7 +362,6 @@ namespace lin_eindopdracht
             };
 
             return new Matrix3D(projectieMatrix);
-
         }
 
         private Matrix3D getCameraMatrix()

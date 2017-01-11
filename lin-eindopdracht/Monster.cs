@@ -16,28 +16,17 @@ namespace lin_eindopdracht
 
         public Monster(float x, float y, float z, double canvasWidth, double canvasHeight )
         {
-            //List<List<double>> voertuigMatrix = new List<List<double>>{
-            //    new List<double> {0,50,0,50, 0,50,0,50}, //x
-            //    new List<double> {250,250,300,300, 250,250,300,300}, //y
-            //    new List<double> {0,0,0,0,   50,50,50,50}  //z
-            //};
             List<List<double>> monsterMatrix = new List<List<double>>{
                 new List<double> {-1000,-950, -1000, -950, -1000, -950, - 1000, -950}, //x
                 new List<double> {250,250,300,300, 250,250,300,300}, //y
                 new List<double> {0,0,0,0,   50,50,50,50}  //z
             };
-            //List<List<double>> monsterMatrix = new List<List<double>>{
-            //        new List<double> {0,50,0,50, 0,50,0,50}, //x
-            //        new List<double> {0,0,50,50, 0,0,50,50}, //y
-            //        new List<double> {0,0,0,0,   50,50,50,50}  //z
-            //};
 
             matrix = new Matrix3D(monsterMatrix);
             matrix.transleer(x, y, z);
 
             maxGrowHeight = canvasHeight / 3;
             maxGrowWidth = canvasWidth / 3;
-
         }
 
         public void grow()
