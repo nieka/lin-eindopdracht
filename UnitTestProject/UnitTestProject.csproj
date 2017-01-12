@@ -62,6 +62,7 @@
     <Compile Include="NormalizeTests.cs" />
     <Compile Include="inverseTests.cs" />
     <Compile Include="DeterminantTest.cs" />
+    <Compile Include="puntinvlakTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lin-eindopdracht\lin-eindopdracht.csproj">

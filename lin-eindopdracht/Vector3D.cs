@@ -52,6 +52,14 @@ namespace lin_eindopdracht
             return new Vector3D(x, y, z);
         }
 
+        public static Vector3D Divide(Vector3D vector1, float divideValue)
+        {
+            float x = vector1.x / divideValue;
+            float y = vector1.y / divideValue;
+            float z = vector1.z / divideValue;
+            return new Vector3D(x, y, z);
+        }
+
         public static float distance(Vector3D vector1, Vector3D vector2)
         {
             return (float) Math.Sqrt((vector2.x - vector1.x) * (vector2.x - vector1.x) + (vector2.y - vector1.y) * (vector2.y - vector1.y) + (vector2.z - vector1.z) * (vector2.z - vector1.z));

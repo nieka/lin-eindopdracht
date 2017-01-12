@@ -299,5 +299,30 @@ namespace lin_eindopdracht
             }
             matrix.Add(rekenlist);
         }
+
+        public  static bool puntInVlak(Vector3D punt, Matrix3D vlak)
+        {
+
+            //todo voeg check toe of het vlak wel correct is
+            Vector3D steunVector = new Vector3D((float)vlak.matrix[0][0], (float)vlak.matrix[1][0], (float)vlak.matrix[2][0]);
+            Vector3D punt_Q = new Vector3D((float)vlak.matrix[0][1], (float)vlak.matrix[1][1], (float)vlak.matrix[2][1]);
+            Vector3D punt_S = new Vector3D((float)vlak.matrix[0][2], (float)vlak.matrix[1][2], (float)vlak.matrix[2][2]);
+
+            Vector3D richtingsvector_1 = Vector3D.Divide(Vector3D.subtract(punt_Q, steunVector), Vector3D.distance(punt_Q, steunVector));
+            Vector3D richtingsvector_2 = Vector3D.Divide(Vector3D.subtract(punt_S, steunVector), Vector3D.distance(punt_S, steunVector));
+
+            Vector3D normaalVector = Vector3D.uitProduct(richtingsvector_1, richtingsvector_2);//Moet dit niet het uit product zijn?
+
+            float uitkomstFormule = (float) Vector3D.inProduct(normaalVector, steunVector);
+            if(normaalVector.x * punt.x + normaalVector.y * punt.y + normaalVector.z * punt.z == uitkomstFormule)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+
+
+        }
     }
 }
