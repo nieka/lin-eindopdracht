@@ -33,7 +33,7 @@ namespace lin_eindopdracht
         {
             if (Math.Abs(matrix.matrix[0][1] - matrix.matrix[0][1]) < maxGrowWidth && Math.Abs(matrix.matrix[1][1] - matrix.matrix[1][3]) < maxGrowWidth)
             {
-                matrix.schaal(growSpeed, growSpeed, growSpeed);
+                matrix.schaal(growSpeed, growSpeed, 1);
             }
 
             //move monster closer to 
@@ -42,6 +42,70 @@ namespace lin_eindopdracht
                 matrix.transleer(MOVESPEED, 0, 0);
             }
 
+        }
+
+        public bool HulpLijnRaaktVlak(Vector3D punt)
+        {
+            //bottum
+            List<List<double>> vlak = new List<List<double>>{
+                new List<double> {matrix.matrix[0][2],matrix.matrix[0][3],matrix.matrix[0][7]}, //x
+                new List<double> {matrix.matrix[1][2],matrix.matrix[1][3],matrix.matrix[1][7]}, //y
+                new List<double> {matrix.matrix[2][2], matrix.matrix[2][3], matrix.matrix[2][7] }  //z
+            };
+            if(Matrix3D.puntInVlak(punt,new Matrix3D(vlak))){
+                return true;
+            }
+            //right
+            vlak = new List<List<double>>{
+                new List<double> {matrix.matrix[0][1],matrix.matrix[0][3],matrix.matrix[0][7]}, //x
+                new List<double> {matrix.matrix[1][1],matrix.matrix[1][3],matrix.matrix[1][7]}, //y
+                new List<double> {matrix.matrix[2][1], matrix.matrix[2][3], matrix.matrix[2][7] }  //z
+            };
+            if (Matrix3D.puntInVlak(punt, new Matrix3D(vlak))){
+                return true;
+            }
+            //front
+            vlak = new List<List<double>>{
+                new List<double> {matrix.matrix[0][4],matrix.matrix[0][5],matrix.matrix[0][7]}, //x
+                new List<double> {matrix.matrix[1][4],matrix.matrix[1][5],matrix.matrix[1][7]}, //y
+                new List<double> {matrix.matrix[2][4], matrix.matrix[2][5], matrix.matrix[2][7] }  //z
+            };
+            if (Matrix3D.puntInVlak(punt, new Matrix3D(vlak))){
+                return true;
+            }
+            //left
+            vlak = new List<List<double>>{
+                new List<double> {matrix.matrix[0][0],matrix.matrix[0][2],matrix.matrix[0][6]}, //x
+                new List<double> {matrix.matrix[1][0],matrix.matrix[1][2],matrix.matrix[1][6]}, //y
+                new List<double> {matrix.matrix[2][0], matrix.matrix[2][2], matrix.matrix[2][6] }  //z
+            };
+            if (Matrix3D.puntInVlak(punt, new Matrix3D(vlak)))
+            {
+                return true;
+            }
+            //back
+            vlak = new List<List<double>>{
+                new List<double> {matrix.matrix[0][0],matrix.matrix[0][1],matrix.matrix[0][3]}, //x
+                new List<double> {matrix.matrix[1][0],matrix.matrix[1][1],matrix.matrix[1][3]}, //y
+                new List<double> {matrix.matrix[2][0], matrix.matrix[2][1], matrix.matrix[2][3] }  //z
+            };
+            if (Matrix3D.puntInVlak(punt, new Matrix3D(vlak)))
+            {
+                return true;
+            }
+
+            //top
+            vlak = new List<List<double>>{
+                new List<double> {matrix.matrix[0][1],matrix.matrix[0][0],matrix.matrix[0][4]}, //x
+                new List<double> {matrix.matrix[1][1],matrix.matrix[1][0],matrix.matrix[1][4]}, //y
+                new List<double> {matrix.matrix[2][1], matrix.matrix[2][0], matrix.matrix[2][4] }  //z
+            };
+            if (Matrix3D.puntInVlak(punt, new Matrix3D(vlak)))
+            {
+                return true;
+            }
+            return false;
+        
         }
     }
 }

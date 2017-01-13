@@ -26,12 +26,14 @@ namespace lin_eindopdracht
         private Vector3D up;
 
         private double screenSize;
+        private RotateType rotatieAs;
 
         public controller(Canvas canvas)
         {
             this.canvas = canvas;
             screenSize = canvas.Width;
 
+            rotatieAs = RotateType.XAS;
             kogels = new List<Kogel>();
 
             voertuig = new voertuig(0, 0,0);
@@ -76,7 +78,10 @@ namespace lin_eindopdracht
             tempVoertuigMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempVoertuigMatrix.matrix);
             naberekening(tempVoertuigMatrix);
             drawMatrix(tempVoertuigMatrix.matrix);
+            logMatrix(voertuig.matrix);
             voertuig.matrix.matrix.RemoveAt(voertuig.matrix.matrix.Count - 1);
+
+            
 
             //draw monster
             Matrix3D tempMonsterMatrix = new Matrix3D(monster.matrix.matrix);
@@ -91,7 +96,17 @@ namespace lin_eindopdracht
             Matrix3D.AddRekenRegel(tempLijnMatrix.matrix);
             tempLijnMatrix.matrix = Matrix3D.vermenigvuldig(convertMatrix.matrix, tempLijnMatrix.matrix);
             naberekening(tempLijnMatrix);
-            drawLine(tempLijnMatrix.matrix, Brushes.LightSteelBlue);
+
+            //bepaald of die het monster raakt. Zoja dan toon een ander kleur lijn
+            
+            if (monster.HulpLijnRaaktVlak(new Vector3D((float)tempLijnMatrix.matrix[0][1], (float)tempLijnMatrix.matrix[1][1], (float)tempLijnMatrix.matrix[2][1])))
+            {
+                //als je nu zou schieten dan schiet je raak
+                drawLine(tempLijnMatrix.matrix, Brushes.Green);
+            } else
+            {
+                drawLine(tempLijnMatrix.matrix, Brushes.LightSteelBlue);
+            }       
 
             //draw kogels
             foreach (Kogel kogel in kogels)
@@ -133,6 +148,7 @@ namespace lin_eindopdracht
         public void move(Key k)
         {
             int moveValue = 5;
+            
             switch (k)
             {
                 case Key.Up:
@@ -152,10 +168,19 @@ namespace lin_eindopdracht
                     voertuig.matrix.transleer(moveValue, 0, 0);
                     break;
                 case Key.Q:
-                    voertuig.matrix.rotatedSelf(moveValue, RotateType.XAS);
+                    voertuig.matrix.rotatedSelf(moveValue, rotatieAs);
                     break;
                 case Key.E:
-                    voertuig.matrix.rotatedSelf(-moveValue, RotateType.XAS);
+                    voertuig.matrix.rotatedSelf(-moveValue, rotatieAs);
+                    break;
+                case Key.X:
+                    rotatieAs = RotateType.XAS;
+                    break;
+                case Key.Y:
+                    rotatieAs = RotateType.YAS;
+                    break;
+                case Key.Z:
+                    rotatieAs = RotateType.ZAS;
                     break;
                 case Key.Space:
                     kogels.Add(new Kogel(voertuig.getRichtingsVector(),voertuig.steunvector));

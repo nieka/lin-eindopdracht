@@ -63,16 +63,16 @@ namespace lin_eindopdracht
         public void rotatedSelf(double graden, RotateType type)
         {            
             float x = (float) Math.Round(matrix[0][0],DECMAILROUNDING);
-            float y = (float) Math.Round(matrix[0][1],DECMAILROUNDING);
-            float z = (float) Math.Round(matrix[0][2],DECMAILROUNDING);
+            float y = (float) Math.Round(matrix[1][0],DECMAILROUNDING);
+            float z = (float) Math.Round(matrix[2][0],DECMAILROUNDING);
 
             double t1 = Math.Round(Math.Atan2(z, x),DECMAILROUNDING);
             double t2 = Math.Round(Math.Atan2(y, (Math.Sqrt(x * x + z * z))),DECMAILROUNDING);  
 
             List<List<double>> R1_matrix = new List<List<double>>();
-            R1_matrix.Add(new List<double>() { Math.Cos(t1), 0, Math.Sin(t1),0 });
+            R1_matrix.Add(new List<double>() { Math.Round(Math.Cos(t1),DECMAILROUNDING), 0, Math.Round(Math.Sin(t1),DECMAILROUNDING),0 });
             R1_matrix.Add(new List<double>() { 0, 1, 0,0 });
-            R1_matrix.Add(new List<double>() { -1 * Math.Sin(t1), 0, Math.Cos(t1) , 0});
+            R1_matrix.Add(new List<double>() { -1 * Math.Round(Math.Sin(t1),DECMAILROUNDING), 0, Math.Round(Math.Cos(t1),DECMAILROUNDING) , 0});
             R1_matrix.Add(new List<double>() { 0, 0, 0 , 1 });
             Matrix3D RotateMatrix = new Matrix3D(R1_matrix);
             RotateMatrix.transleer(-x, -y, -z);
