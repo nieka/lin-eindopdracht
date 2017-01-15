@@ -1,18 +1,4 @@
 C:\Users\Niekh\Documents\school\blok 14\c++2\Eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe.config
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe.config
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.pdb
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.csprojResolveAssemblyReference.cache
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\MainWindow.g.cs
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\App.g.cs
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht_MarkupCompile.cache
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht_MarkupCompile.lref
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\MainWindow.baml
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.g.resources
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin_eindopdracht.Properties.Resources.resources
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.csproj.GenerateResource.Cache
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.exe
-C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.pdb
 C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe.config
 C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe
 C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.pdb
@@ -30,3 +16,17 @@ C:\Users\Michel\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin
 D:\miche\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe.config
 D:\miche\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.exe
 D:\miche\Documents\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.pdb
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe.config
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.exe
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\bin\Debug\lin-eindopdracht.pdb
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.csprojResolveAssemblyReference.cache
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\MainWindow.g.cs
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\App.g.cs
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht_MarkupCompile.cache
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht_MarkupCompile.lref
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\MainWindow.baml
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.g.resources
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin_eindopdracht.Properties.Resources.resources
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.csproj.GenerateResource.Cache
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.exe
+C:\Users\Niekh\OneDrive\Documenten\GitHub\lin-eindopdracht\lin-eindopdracht\obj\Debug\lin-eindopdracht.pdb
